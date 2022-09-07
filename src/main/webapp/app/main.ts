@@ -4,6 +4,8 @@ import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { setupAxiosInterceptors } from '@/shared/config/axios-interceptor';
 
+import vuetify from '../plugins/vuetify';
+
 import App from './app.vue';
 import Vue2Filters from 'vue2-filters';
 import { ToastPlugin } from 'bootstrap-vue';
@@ -69,6 +71,7 @@ router.beforeEach(async (to, from, next) => {
 
 /* tslint:disable */
 const vue = new Vue({
+  vuetify,
   el: '#app',
   components: { App },
   template: '<App/>',
