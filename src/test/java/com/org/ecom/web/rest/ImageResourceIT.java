@@ -29,6 +29,9 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class ImageResourceIT {
 
+    private static final Long DEFAULT_PRODUIT_ID = 1L;
+    private static final Long UPDATED_PRODUIT_ID = 2L;
+
     private static final String DEFAULT_LIEN_IMAGE = "AAAAAAAAAA";
     private static final String UPDATED_LIEN_IMAGE = "BBBBBBBBBB";
 
@@ -56,7 +59,7 @@ class ImageResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Image createEntity(EntityManager em) {
-        Image image = new Image().lienImage(DEFAULT_LIEN_IMAGE);
+        Image image = new Image().produitID(DEFAULT_PRODUIT_ID).lienImage(DEFAULT_LIEN_IMAGE);
         return image;
     }
 
@@ -67,7 +70,7 @@ class ImageResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Image createUpdatedEntity(EntityManager em) {
-        Image image = new Image().lienImage(UPDATED_LIEN_IMAGE);
+        Image image = new Image().produitID(UPDATED_PRODUIT_ID).lienImage(UPDATED_LIEN_IMAGE);
         return image;
     }
 
@@ -89,6 +92,7 @@ class ImageResourceIT {
         List<Image> imageList = imageRepository.findAll();
         assertThat(imageList).hasSize(databaseSizeBeforeCreate + 1);
         Image testImage = imageList.get(imageList.size() - 1);
+        assertThat(testImage.getProduitID()).isEqualTo(DEFAULT_PRODUIT_ID);
         assertThat(testImage.getLienImage()).isEqualTo(DEFAULT_LIEN_IMAGE);
     }
 
@@ -122,6 +126,7 @@ class ImageResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(image.getId().intValue())))
+            .andExpect(jsonPath("$.[*].produitID").value(hasItem(DEFAULT_PRODUIT_ID.intValue())))
             .andExpect(jsonPath("$.[*].lienImage").value(hasItem(DEFAULT_LIEN_IMAGE)));
     }
 
@@ -137,6 +142,7 @@ class ImageResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(image.getId().intValue()))
+            .andExpect(jsonPath("$.produitID").value(DEFAULT_PRODUIT_ID.intValue()))
             .andExpect(jsonPath("$.lienImage").value(DEFAULT_LIEN_IMAGE));
     }
 
@@ -159,7 +165,7 @@ class ImageResourceIT {
         Image updatedImage = imageRepository.findById(image.getId()).get();
         // Disconnect from session so that the updates on updatedImage are not directly saved in db
         em.detach(updatedImage);
-        updatedImage.lienImage(UPDATED_LIEN_IMAGE);
+        updatedImage.produitID(UPDATED_PRODUIT_ID).lienImage(UPDATED_LIEN_IMAGE);
 
         restImageMockMvc
             .perform(
@@ -173,6 +179,7 @@ class ImageResourceIT {
         List<Image> imageList = imageRepository.findAll();
         assertThat(imageList).hasSize(databaseSizeBeforeUpdate);
         Image testImage = imageList.get(imageList.size() - 1);
+        assertThat(testImage.getProduitID()).isEqualTo(UPDATED_PRODUIT_ID);
         assertThat(testImage.getLienImage()).isEqualTo(UPDATED_LIEN_IMAGE);
     }
 
@@ -244,33 +251,6 @@ class ImageResourceIT {
         Image partialUpdatedImage = new Image();
         partialUpdatedImage.setId(image.getId());
 
-        restImageMockMvc
-            .perform(
-                patch(ENTITY_API_URL_ID, partialUpdatedImage.getId())
-                    .contentType("application/merge-patch+json")
-                    .content(TestUtil.convertObjectToJsonBytes(partialUpdatedImage))
-            )
-            .andExpect(status().isOk());
-
-        // Validate the Image in the database
-        List<Image> imageList = imageRepository.findAll();
-        assertThat(imageList).hasSize(databaseSizeBeforeUpdate);
-        Image testImage = imageList.get(imageList.size() - 1);
-        assertThat(testImage.getLienImage()).isEqualTo(DEFAULT_LIEN_IMAGE);
-    }
-
-    @Test
-    @Transactional
-    void fullUpdateImageWithPatch() throws Exception {
-        // Initialize the database
-        imageRepository.saveAndFlush(image);
-
-        int databaseSizeBeforeUpdate = imageRepository.findAll().size();
-
-        // Update the image using partial update
-        Image partialUpdatedImage = new Image();
-        partialUpdatedImage.setId(image.getId());
-
         partialUpdatedImage.lienImage(UPDATED_LIEN_IMAGE);
 
         restImageMockMvc
@@ -285,6 +265,37 @@ class ImageResourceIT {
         List<Image> imageList = imageRepository.findAll();
         assertThat(imageList).hasSize(databaseSizeBeforeUpdate);
         Image testImage = imageList.get(imageList.size() - 1);
+        assertThat(testImage.getProduitID()).isEqualTo(DEFAULT_PRODUIT_ID);
+        assertThat(testImage.getLienImage()).isEqualTo(UPDATED_LIEN_IMAGE);
+    }
+
+    @Test
+    @Transactional
+    void fullUpdateImageWithPatch() throws Exception {
+        // Initialize the database
+        imageRepository.saveAndFlush(image);
+
+        int databaseSizeBeforeUpdate = imageRepository.findAll().size();
+
+        // Update the image using partial update
+        Image partialUpdatedImage = new Image();
+        partialUpdatedImage.setId(image.getId());
+
+        partialUpdatedImage.produitID(UPDATED_PRODUIT_ID).lienImage(UPDATED_LIEN_IMAGE);
+
+        restImageMockMvc
+            .perform(
+                patch(ENTITY_API_URL_ID, partialUpdatedImage.getId())
+                    .contentType("application/merge-patch+json")
+                    .content(TestUtil.convertObjectToJsonBytes(partialUpdatedImage))
+            )
+            .andExpect(status().isOk());
+
+        // Validate the Image in the database
+        List<Image> imageList = imageRepository.findAll();
+        assertThat(imageList).hasSize(databaseSizeBeforeUpdate);
+        Image testImage = imageList.get(imageList.size() - 1);
+        assertThat(testImage.getProduitID()).isEqualTo(UPDATED_PRODUIT_ID);
         assertThat(testImage.getLienImage()).isEqualTo(UPDATED_LIEN_IMAGE);
     }
 

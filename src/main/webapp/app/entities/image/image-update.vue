@@ -15,6 +15,18 @@
             <input type="text" class="form-control" id="id" name="id" v-model="image.id" readonly />
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="$t('ecomApp.image.produitID')" for="image-produitID">Produit ID</label>
+            <input
+              type="number"
+              class="form-control"
+              name="produitID"
+              id="image-produitID"
+              data-cy="produitID"
+              :class="{ valid: !$v.image.produitID.$invalid, invalid: $v.image.produitID.$invalid }"
+              v-model.number="$v.image.produitID.$model"
+            />
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="$t('ecomApp.image.lienImage')" for="image-lienImage">Lien Image</label>
             <input
               type="text"

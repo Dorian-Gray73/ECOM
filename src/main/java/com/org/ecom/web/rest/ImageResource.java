@@ -119,6 +119,9 @@ public class ImageResource {
         Optional<Image> result = imageRepository
             .findById(image.getId())
             .map(existingImage -> {
+                if (image.getProduitID() != null) {
+                    existingImage.setProduitID(image.getProduitID());
+                }
                 if (image.getLienImage() != null) {
                     existingImage.setLienImage(image.getLienImage());
                 }

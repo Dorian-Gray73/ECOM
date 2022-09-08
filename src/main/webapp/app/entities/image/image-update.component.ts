@@ -13,6 +13,7 @@ import ImageService from './image.service';
 
 const validations: any = {
   image: {
+    produitID: {},
     lienImage: {},
   },
 };

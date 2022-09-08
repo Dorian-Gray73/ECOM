@@ -29,6 +29,7 @@
         <thead>
           <tr>
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
+            <th scope="row"><span v-text="$t('ecomApp.image.produitID')">Produit ID</span></th>
             <th scope="row"><span v-text="$t('ecomApp.image.lienImage')">Lien Image</span></th>
             <th scope="row"><span v-text="$t('ecomApp.image.produitID')">Produit ID</span></th>
             <th scope="row"><span v-text="$t('ecomApp.image.produit')">Produit</span></th>
@@ -40,6 +41,7 @@
             <td>
               <router-link :to="{ name: 'ImageView', params: { imageId: image.id } }">{{ image.id }}</router-link>
             </td>
+            <td>{{ image.produitID }}</td>
             <td>{{ image.lienImage }}</td>
             <td>
               <div v-if="image.produitID">

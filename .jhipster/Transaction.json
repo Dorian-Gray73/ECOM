@@ -24,7 +24,6 @@
     }
   ],
   "fluentMethods": true,
-  "javadoc": "not an ignored comment",
   "jpaMetamodelFiltering": false,
   "name": "Transaction",
   "pagination": "no",

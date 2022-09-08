@@ -10,7 +10,7 @@
         Added the entity Transaction.
     -->
     <changeSet id="20220908135320-1" author="jhipster">
-        <createTable tableName="transaction" remarks="not an ignored comment">
+        <createTable tableName="transaction">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

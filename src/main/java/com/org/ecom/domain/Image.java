@@ -23,6 +23,9 @@ public class Image implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "produit_id")
+    private Long produitID;
+
     @Column(name = "lien_image")
     private String lienImage;
 
@@ -47,6 +50,19 @@ public class Image implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getProduitID() {
+        return this.produitID;
+    }
+
+    public Image produitID(Long produitID) {
+        this.setProduitID(produitID);
+        return this;
+    }
+
+    public void setProduitID(Long produitID) {
+        this.produitID = produitID;
     }
 
     public String getLienImage() {
@@ -112,6 +128,7 @@ public class Image implements Serializable {
     public String toString() {
         return "Image{" +
             "id=" + getId() +
+            ", produitID=" + getProduitID() +
             ", lienImage='" + getLienImage() + "'" +
             "}";
     }

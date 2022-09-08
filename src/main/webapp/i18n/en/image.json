@@ -18,6 +18,7 @@
         "title": "Image"
       },
       "id": "ID",
+      "produitID": "Produit ID",
       "lienImage": "Lien Image",
       "produitID": "Produit ID",
       "produit": "Produit"

@@ -2,7 +2,6 @@ package com.org.ecom.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.org.ecom.domain.enumeration.EtatProduit;
-import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -12,9 +11,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
- * not an ignored comment
+ * A Transaction.
  */
-@Schema(description = "not an ignored comment")
 @Entity
 @Table(name = "transaction")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

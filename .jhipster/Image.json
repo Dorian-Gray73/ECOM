@@ -6,6 +6,10 @@
   "entityTableName": "image",
   "fields": [
     {
+      "fieldName": "produitID",
+      "fieldType": "Long"
+    },
+    {
       "fieldName": "lienImage",
       "fieldType": "String"
     }
