@@ -72,21 +72,24 @@
             />
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('ecomApp.caracteristique.ligneTransaction')" for="caracteristique-ligneTransaction"
-              >Ligne Transaction</label
+            <label
+              class="form-control-label"
+              v-text="$t('ecomApp.caracteristique.caracteristiqueID')"
+              for="caracteristique-caracteristiqueID"
+              >Caracteristique ID</label
             >
             <select
               class="form-control"
-              id="caracteristique-ligneTransaction"
-              data-cy="ligneTransaction"
-              name="ligneTransaction"
-              v-model="caracteristique.ligneTransaction"
+              id="caracteristique-caracteristiqueID"
+              data-cy="caracteristiqueID"
+              name="caracteristiqueID"
+              v-model="caracteristique.caracteristiqueID"
             >
               <option v-bind:value="null"></option>
               <option
                 v-bind:value="
-                  caracteristique.ligneTransaction && ligneTransactionOption.id === caracteristique.ligneTransaction.id
-                    ? caracteristique.ligneTransaction
+                  caracteristique.caracteristiqueID && ligneTransactionOption.id === caracteristique.caracteristiqueID.id
+                    ? caracteristique.caracteristiqueID
                     : ligneTransactionOption
                 "
                 v-for="ligneTransactionOption in ligneTransactions"

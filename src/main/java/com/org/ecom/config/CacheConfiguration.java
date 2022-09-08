@@ -59,6 +59,7 @@ public class CacheConfiguration {
             createCache(cm, com.org.ecom.domain.Transaction.class.getName() + ".ligneTransactions");
             createCache(cm, com.org.ecom.domain.LigneTransaction.class.getName());
             createCache(cm, com.org.ecom.domain.Image.class.getName());
+            createCache(cm, com.org.ecom.domain.Caracteristique.class.getName() + ".images");
             // jhipster-needle-ehcache-add-entry
         };
     }

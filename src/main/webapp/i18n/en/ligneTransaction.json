@@ -22,7 +22,7 @@
       "caracteristiqueID": "Caracteristique ID",
       "quantite": "Quantite",
       "prixUnitaire": "Prix Unitaire",
-      "caracteristique": "Caracteristique",
+      "caracteristiqueID": "Caracteristique ID",
       "transaction": "Transaction"
     }
   }

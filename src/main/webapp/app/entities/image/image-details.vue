@@ -19,12 +19,12 @@
             <span>{{ image.lienImage }}</span>
           </dd>
           <dt>
-            <span v-text="$t('ecomApp.image.produitID')">Produit ID</span>
+            <span v-text="$t('ecomApp.image.caracteristique')">Caracteristique</span>
           </dt>
           <dd>
-            <div v-if="image.produitID">
-              <router-link :to="{ name: 'CaracteristiqueView', params: { caracteristiqueId: image.produitID.id } }">{{
-                image.produitID.id
+            <div v-if="image.caracteristique">
+              <router-link :to="{ name: 'CaracteristiqueView', params: { caracteristiqueId: image.caracteristique.id } }">{{
+                image.caracteristique.id
               }}</router-link>
             </div>
           </dd>

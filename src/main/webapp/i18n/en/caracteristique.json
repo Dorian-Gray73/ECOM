@@ -22,8 +22,8 @@
       "produitID": "Produit ID",
       "couleur": "Couleur",
       "quantite": "Quantite",
-      "ligneTransaction": "Ligne Transaction",
       "caracteristiqueID": "Caracteristique ID",
+      "image": "Image",
       "produit": "Produit"
     }
   }

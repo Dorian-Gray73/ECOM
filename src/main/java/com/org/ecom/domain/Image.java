@@ -30,8 +30,8 @@ public class Image implements Serializable {
     private String lienImage;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "ligneTransaction", "caracteristiqueIDS", "produit" }, allowSetters = true)
-    private Caracteristique produitID;
+    @JsonIgnoreProperties(value = { "caracteristiqueID", "images", "produit" }, allowSetters = true)
+    private Caracteristique caracteristique;
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "caracteristiques", "images" }, allowSetters = true)
@@ -78,16 +78,16 @@ public class Image implements Serializable {
         this.lienImage = lienImage;
     }
 
-    public Caracteristique getProduitID() {
-        return this.produitID;
+    public Caracteristique getCaracteristique() {
+        return this.caracteristique;
     }
 
-    public void setProduitID(Caracteristique caracteristique) {
-        this.produitID = caracteristique;
+    public void setCaracteristique(Caracteristique caracteristique) {
+        this.caracteristique = caracteristique;
     }
 
-    public Image produitID(Caracteristique caracteristique) {
-        this.setProduitID(caracteristique);
+    public Image caracteristique(Caracteristique caracteristique) {
+        this.setCaracteristique(caracteristique);
         return this;
     }
 

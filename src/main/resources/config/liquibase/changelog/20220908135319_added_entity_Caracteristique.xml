@@ -26,8 +26,8 @@
             <column name="quantite" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="ligne_transaction_id" type="bigint">
-                <constraints nullable="true" unique="true" uniqueConstraintName="ux_caracteristique__ligne_transaction_id" />
+            <column name="caracteristiqueid_id" type="bigint">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_caracteristique__caracteristiqueid_id" />
             </column>
             <column name="produit_id" type="bigint">
                 <constraints nullable="true" />

@@ -22,8 +22,8 @@
   "relationships": [
     {
       "otherEntityName": "caracteristique",
-      "otherEntityRelationshipName": "caracteristiqueID",
-      "relationshipName": "produitID",
+      "otherEntityRelationshipName": "image",
+      "relationshipName": "caracteristique",
       "relationshipType": "many-to-one"
     },
     {

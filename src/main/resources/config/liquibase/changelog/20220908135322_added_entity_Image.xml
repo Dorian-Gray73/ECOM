@@ -20,7 +20,7 @@
             <column name="lien_image" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="produitid_id" type="bigint">
+            <column name="caracteristique_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="produit_id" type="bigint">

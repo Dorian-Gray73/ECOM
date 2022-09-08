@@ -39,11 +39,23 @@
             />
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('ecomApp.image.produitID')" for="image-produitID">Produit ID</label>
-            <select class="form-control" id="image-produitID" data-cy="produitID" name="produitID" v-model="image.produitID">
+            <label class="form-control-label" v-text="$t('ecomApp.image.caracteristique')" for="image-caracteristique"
+              >Caracteristique</label
+            >
+            <select
+              class="form-control"
+              id="image-caracteristique"
+              data-cy="caracteristique"
+              name="caracteristique"
+              v-model="image.caracteristique"
+            >
               <option v-bind:value="null"></option>
               <option
-                v-bind:value="image.produitID && caracteristiqueOption.id === image.produitID.id ? image.produitID : caracteristiqueOption"
+                v-bind:value="
+                  image.caracteristique && caracteristiqueOption.id === image.caracteristique.id
+                    ? image.caracteristique
+                    : caracteristiqueOption
+                "
                 v-for="caracteristiqueOption in caracteristiques"
                 :key="caracteristiqueOption.id"
               >

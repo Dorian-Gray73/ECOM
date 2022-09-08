@@ -5,7 +5,7 @@ export interface IImage {
   id?: number;
   produitID?: number | null;
   lienImage?: string | null;
-  produitID?: ICaracteristique | null;
+  caracteristique?: ICaracteristique | null;
   produit?: IProduit | null;
 }
 
@@ -14,7 +14,7 @@ export class Image implements IImage {
     public id?: number,
     public produitID?: number | null,
     public lienImage?: string | null,
-    public produitID?: ICaracteristique | null,
+    public caracteristique?: ICaracteristique | null,
     public produit?: IProduit | null
   ) {}
 }

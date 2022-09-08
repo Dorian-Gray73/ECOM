@@ -37,15 +37,15 @@ public class Caracteristique implements Serializable {
     @Column(name = "quantite")
     private Integer quantite;
 
-    @JsonIgnoreProperties(value = { "caracteristique", "transaction" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "caracteristiqueID", "transaction" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
-    private LigneTransaction ligneTransaction;
+    private LigneTransaction caracteristiqueID;
 
-    @OneToMany(mappedBy = "produitID")
+    @OneToMany(mappedBy = "caracteristique")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "produitID", "produit" }, allowSetters = true)
-    private Set<Image> caracteristiqueIDS = new HashSet<>();
+    @JsonIgnoreProperties(value = { "caracteristique", "produit" }, allowSetters = true)
+    private Set<Image> images = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "caracteristiques", "images" }, allowSetters = true)
@@ -118,47 +118,47 @@ public class Caracteristique implements Serializable {
         this.quantite = quantite;
     }
 
-    public LigneTransaction getLigneTransaction() {
-        return this.ligneTransaction;
+    public LigneTransaction getCaracteristiqueID() {
+        return this.caracteristiqueID;
     }
 
-    public void setLigneTransaction(LigneTransaction ligneTransaction) {
-        this.ligneTransaction = ligneTransaction;
+    public void setCaracteristiqueID(LigneTransaction ligneTransaction) {
+        this.caracteristiqueID = ligneTransaction;
     }
 
-    public Caracteristique ligneTransaction(LigneTransaction ligneTransaction) {
-        this.setLigneTransaction(ligneTransaction);
+    public Caracteristique caracteristiqueID(LigneTransaction ligneTransaction) {
+        this.setCaracteristiqueID(ligneTransaction);
         return this;
     }
 
-    public Set<Image> getCaracteristiqueIDS() {
-        return this.caracteristiqueIDS;
+    public Set<Image> getImages() {
+        return this.images;
     }
 
-    public void setCaracteristiqueIDS(Set<Image> images) {
-        if (this.caracteristiqueIDS != null) {
-            this.caracteristiqueIDS.forEach(i -> i.setProduitID(null));
+    public void setImages(Set<Image> images) {
+        if (this.images != null) {
+            this.images.forEach(i -> i.setCaracteristique(null));
         }
         if (images != null) {
-            images.forEach(i -> i.setProduitID(this));
+            images.forEach(i -> i.setCaracteristique(this));
         }
-        this.caracteristiqueIDS = images;
+        this.images = images;
     }
 
-    public Caracteristique caracteristiqueIDS(Set<Image> images) {
-        this.setCaracteristiqueIDS(images);
+    public Caracteristique images(Set<Image> images) {
+        this.setImages(images);
         return this;
     }
 
-    public Caracteristique addCaracteristiqueID(Image image) {
-        this.caracteristiqueIDS.add(image);
-        image.setProduitID(this);
+    public Caracteristique addImage(Image image) {
+        this.images.add(image);
+        image.setCaracteristique(this);
         return this;
     }
 
-    public Caracteristique removeCaracteristiqueID(Image image) {
-        this.caracteristiqueIDS.remove(image);
-        image.setProduitID(null);
+    public Caracteristique removeImage(Image image) {
+        this.images.remove(image);
+        image.setCaracteristique(null);
         return this;
     }
 

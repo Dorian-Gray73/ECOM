@@ -48,12 +48,12 @@ public class Produit implements Serializable {
 
     @OneToMany(mappedBy = "produit")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "ligneTransaction", "caracteristiqueIDS", "produit" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "caracteristiqueID", "images", "produit" }, allowSetters = true)
     private Set<Caracteristique> caracteristiques = new HashSet<>();
 
     @OneToMany(mappedBy = "produit")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "produitID", "produit" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "caracteristique", "produit" }, allowSetters = true)
     private Set<Image> images = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

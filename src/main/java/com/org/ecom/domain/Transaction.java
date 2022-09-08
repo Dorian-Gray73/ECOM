@@ -42,7 +42,7 @@ public class Transaction implements Serializable {
 
     @OneToMany(mappedBy = "transaction")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "caracteristique", "transaction" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "caracteristiqueID", "transaction" }, allowSetters = true)
     private Set<LigneTransaction> ligneTransactions = new HashSet<>();
 
     @ManyToOne

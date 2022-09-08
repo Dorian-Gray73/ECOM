@@ -30,15 +30,15 @@
   "relationships": [
     {
       "otherEntityName": "ligneTransaction",
-      "otherEntityRelationshipName": "caracteristique",
+      "otherEntityRelationshipName": "caracteristiqueID",
       "ownerSide": true,
-      "relationshipName": "ligneTransaction",
+      "relationshipName": "caracteristiqueID",
       "relationshipType": "one-to-one"
     },
     {
       "otherEntityName": "image",
-      "otherEntityRelationshipName": "produitID",
-      "relationshipName": "caracteristiqueID",
+      "otherEntityRelationshipName": "caracteristique",
+      "relationshipName": "image",
       "relationshipType": "one-to-many"
     },
     {

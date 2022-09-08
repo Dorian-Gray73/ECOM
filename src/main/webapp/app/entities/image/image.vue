@@ -31,7 +31,7 @@
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
             <th scope="row"><span v-text="$t('ecomApp.image.produitID')">Produit ID</span></th>
             <th scope="row"><span v-text="$t('ecomApp.image.lienImage')">Lien Image</span></th>
-            <th scope="row"><span v-text="$t('ecomApp.image.produitID')">Produit ID</span></th>
+            <th scope="row"><span v-text="$t('ecomApp.image.caracteristique')">Caracteristique</span></th>
             <th scope="row"><span v-text="$t('ecomApp.image.produit')">Produit</span></th>
             <th scope="row"></th>
           </tr>
@@ -44,9 +44,9 @@
             <td>{{ image.produitID }}</td>
             <td>{{ image.lienImage }}</td>
             <td>
-              <div v-if="image.produitID">
-                <router-link :to="{ name: 'CaracteristiqueView', params: { caracteristiqueId: image.produitID.id } }">{{
-                  image.produitID.id
+              <div v-if="image.caracteristique">
+                <router-link :to="{ name: 'CaracteristiqueView', params: { caracteristiqueId: image.caracteristique.id } }">{{
+                  image.caracteristique.id
                 }}</router-link>
               </div>
             </td>
