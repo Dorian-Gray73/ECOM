@@ -1,3 +1,6 @@
 <template>
-  <div>Recherche</div>
+  <div>
+    <span id="title">Résultats de la recherche</span>
+    <hr id="separate" />
+  </div>
 </template>
