@@ -7,7 +7,7 @@ Component.registerHooks([
 ]);
 import Router, { RouteConfig } from 'vue-router';
 
-const Home = () => import('@/core/home/home.vue');
+const Accueil = () => import('@/core/accueil/accueil.vue');
 const Error = () => import('@/core/error/error.vue');
 import account from '@/router/account';
 import admin from '@/router/admin';
@@ -22,8 +22,8 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: 'Accueil',
+      component: Accueil
     },
     {
       path: '/forbidden',
