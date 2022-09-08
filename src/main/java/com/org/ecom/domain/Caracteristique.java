@@ -37,10 +37,10 @@ public class Caracteristique implements Serializable {
     @Column(name = "quantite")
     private Integer quantite;
 
-    @JsonIgnoreProperties(value = { "caracteristiqueID", "transaction" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "caracteristique", "transaction" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
-    private LigneTransaction caracteristiqueID;
+    private LigneTransaction ligneTransaction;
 
     @OneToMany(mappedBy = "caracteristique")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -118,16 +118,16 @@ public class Caracteristique implements Serializable {
         this.quantite = quantite;
     }
 
-    public LigneTransaction getCaracteristiqueID() {
-        return this.caracteristiqueID;
+    public LigneTransaction getLigneTransaction() {
+        return this.ligneTransaction;
     }
 
-    public void setCaracteristiqueID(LigneTransaction ligneTransaction) {
-        this.caracteristiqueID = ligneTransaction;
+    public void setLigneTransaction(LigneTransaction ligneTransaction) {
+        this.ligneTransaction = ligneTransaction;
     }
 
-    public Caracteristique caracteristiqueID(LigneTransaction ligneTransaction) {
-        this.setCaracteristiqueID(ligneTransaction);
+    public Caracteristique ligneTransaction(LigneTransaction ligneTransaction) {
+        this.setLigneTransaction(ligneTransaction);
         return this;
     }
 

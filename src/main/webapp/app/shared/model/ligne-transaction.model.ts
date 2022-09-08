@@ -7,7 +7,7 @@ export interface ILigneTransaction {
   caracteristiqueID?: number | null;
   quantite?: number | null;
   prixUnitaire?: number | null;
-  caracteristiqueID?: ICaracteristique | null;
+  caracteristique?: ICaracteristique | null;
   transaction?: ITransaction | null;
 }
 
@@ -18,7 +18,7 @@ export class LigneTransaction implements ILigneTransaction {
     public caracteristiqueID?: number | null,
     public quantite?: number | null,
     public prixUnitaire?: number | null,
-    public caracteristiqueID?: ICaracteristique | null,
+    public caracteristique?: ICaracteristique | null,
     public transaction?: ITransaction | null
   ) {}
 }

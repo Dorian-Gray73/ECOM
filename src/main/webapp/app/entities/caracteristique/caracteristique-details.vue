@@ -31,12 +31,12 @@
             <span>{{ caracteristique.quantite }}</span>
           </dd>
           <dt>
-            <span v-text="$t('ecomApp.caracteristique.caracteristiqueID')">Caracteristique ID</span>
+            <span v-text="$t('ecomApp.caracteristique.ligneTransaction')">Ligne Transaction</span>
           </dt>
           <dd>
-            <div v-if="caracteristique.caracteristiqueID">
-              <router-link :to="{ name: 'LigneTransactionView', params: { ligneTransactionId: caracteristique.caracteristiqueID.id } }">{{
-                caracteristique.caracteristiqueID.id
+            <div v-if="caracteristique.ligneTransaction">
+              <router-link :to="{ name: 'LigneTransactionView', params: { ligneTransactionId: caracteristique.ligneTransaction.id } }">{{
+                caracteristique.ligneTransaction.id
               }}</router-link>
             </div>
           </dd>

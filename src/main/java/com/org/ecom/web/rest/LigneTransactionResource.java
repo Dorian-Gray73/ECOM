@@ -157,11 +157,11 @@ public class LigneTransactionResource {
      */
     @GetMapping("/ligne-transactions")
     public List<LigneTransaction> getAllLigneTransactions(@RequestParam(required = false) String filter) {
-        if ("caracteristiqueid-is-null".equals(filter)) {
-            log.debug("REST request to get all LigneTransactions where caracteristiqueID is null");
+        if ("caracteristique-is-null".equals(filter)) {
+            log.debug("REST request to get all LigneTransactions where caracteristique is null");
             return StreamSupport
                 .stream(ligneTransactionRepository.findAll().spliterator(), false)
-                .filter(ligneTransaction -> ligneTransaction.getCaracteristiqueID() == null)
+                .filter(ligneTransaction -> ligneTransaction.getCaracteristique() == null)
                 .collect(Collectors.toList());
         }
         log.debug("REST request to get all LigneTransactions");

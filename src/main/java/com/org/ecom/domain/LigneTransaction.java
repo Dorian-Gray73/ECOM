@@ -35,9 +35,9 @@ public class LigneTransaction implements Serializable {
     @Column(name = "prix_unitaire")
     private Float prixUnitaire;
 
-    @JsonIgnoreProperties(value = { "caracteristiqueID", "images", "produit" }, allowSetters = true)
-    @OneToOne(mappedBy = "caracteristiqueID")
-    private Caracteristique caracteristiqueID;
+    @JsonIgnoreProperties(value = { "ligneTransaction", "images", "produit" }, allowSetters = true)
+    @OneToOne(mappedBy = "ligneTransaction")
+    private Caracteristique caracteristique;
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "ligneTransactions", "utilisateur" }, allowSetters = true)
@@ -110,22 +110,22 @@ public class LigneTransaction implements Serializable {
         this.prixUnitaire = prixUnitaire;
     }
 
-    public Caracteristique getCaracteristiqueID() {
-        return this.caracteristiqueID;
+    public Caracteristique getCaracteristique() {
+        return this.caracteristique;
     }
 
-    public void setCaracteristiqueID(Caracteristique caracteristique) {
-        if (this.caracteristiqueID != null) {
-            this.caracteristiqueID.setCaracteristiqueID(null);
+    public void setCaracteristique(Caracteristique caracteristique) {
+        if (this.caracteristique != null) {
+            this.caracteristique.setLigneTransaction(null);
         }
         if (caracteristique != null) {
-            caracteristique.setCaracteristiqueID(this);
+            caracteristique.setLigneTransaction(this);
         }
-        this.caracteristiqueID = caracteristique;
+        this.caracteristique = caracteristique;
     }
 
-    public LigneTransaction caracteristiqueID(Caracteristique caracteristique) {
-        this.setCaracteristiqueID(caracteristique);
+    public LigneTransaction caracteristique(Caracteristique caracteristique) {
+        this.setCaracteristique(caracteristique);
         return this;
     }
 

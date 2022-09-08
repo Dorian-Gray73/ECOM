@@ -30,9 +30,9 @@
   "relationships": [
     {
       "otherEntityName": "ligneTransaction",
-      "otherEntityRelationshipName": "caracteristiqueID",
+      "otherEntityRelationshipName": "caracteristique",
       "ownerSide": true,
-      "relationshipName": "caracteristiqueID",
+      "relationshipName": "ligneTransaction",
       "relationshipType": "one-to-one"
     },
     {

@@ -33,7 +33,7 @@
             <th scope="row"><span v-text="$t('ecomApp.caracteristique.produitID')">Produit ID</span></th>
             <th scope="row"><span v-text="$t('ecomApp.caracteristique.couleur')">Couleur</span></th>
             <th scope="row"><span v-text="$t('ecomApp.caracteristique.quantite')">Quantite</span></th>
-            <th scope="row"><span v-text="$t('ecomApp.caracteristique.caracteristiqueID')">Caracteristique ID</span></th>
+            <th scope="row"><span v-text="$t('ecomApp.caracteristique.ligneTransaction')">Ligne Transaction</span></th>
             <th scope="row"><span v-text="$t('ecomApp.caracteristique.produit')">Produit</span></th>
             <th scope="row"></th>
           </tr>
@@ -50,9 +50,9 @@
             <td>{{ caracteristique.couleur }}</td>
             <td>{{ caracteristique.quantite }}</td>
             <td>
-              <div v-if="caracteristique.caracteristiqueID">
-                <router-link :to="{ name: 'LigneTransactionView', params: { ligneTransactionId: caracteristique.caracteristiqueID.id } }">{{
-                  caracteristique.caracteristiqueID.id
+              <div v-if="caracteristique.ligneTransaction">
+                <router-link :to="{ name: 'LigneTransactionView', params: { ligneTransactionId: caracteristique.ligneTransaction.id } }">{{
+                  caracteristique.ligneTransaction.id
                 }}</router-link>
               </div>
             </td>
