@@ -1,5 +1,5 @@
 <template>
-  <div id="footer" class="footer">
+  <div id="footer">
     <hr id="separate" />
     <p v-text="$t('This is your footer et je suis un test de mise en prod')">This is your footer et je suis un test de mise en prod</p>
   </div>
@@ -10,6 +10,7 @@
 <style scoped>
 #separate {
   background-color: #5b85aa;
-  border: 3px solid #5b85aa;
+  border: 2px solid #5b85aa;
+  height: 0px;
 }
 </style>
