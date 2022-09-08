@@ -1,0 +1,46 @@
+{
+  "applications": "*",
+  "changelogDate": "20220908135321",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "ligne_transaction",
+  "fields": [
+    {
+      "fieldName": "transactionID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "caracteristiqueID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "quantite",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "prixUnitaire",
+      "fieldType": "Float"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "LigneTransaction",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "caracteristique",
+      "otherEntityRelationshipName": "ligneTransaction",
+      "ownerSide": false,
+      "relationshipName": "caracteristique",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "transaction",
+      "otherEntityRelationshipName": "ligneTransaction",
+      "relationshipName": "transaction",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

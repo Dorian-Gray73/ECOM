@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20220908135320",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "transaction",
+  "fields": [
+    {
+      "fieldName": "transactionID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "utilisateurID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "etat",
+      "fieldType": "EtatProduit",
+      "fieldValues": "Encours,Achete"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "not an ignored comment",
+  "jpaMetamodelFiltering": false,
+  "name": "Transaction",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "ligneTransaction",
+      "otherEntityRelationshipName": "transaction",
+      "relationshipName": "ligneTransaction",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "utilisateur",
+      "otherEntityRelationshipName": "transaction",
+      "relationshipName": "utilisateur",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

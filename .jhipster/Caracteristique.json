@@ -1,0 +1,52 @@
+{
+  "applications": "*",
+  "changelogDate": "20220908135319",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "caracteristique",
+  "fields": [
+    {
+      "fieldName": "caracteristiqueID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "produitID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "couleur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quantite",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Caracteristique",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "ligneTransaction",
+      "otherEntityRelationshipName": "caracteristique",
+      "ownerSide": true,
+      "relationshipName": "ligneTransaction",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "image",
+      "otherEntityRelationshipName": "produitID",
+      "relationshipName": "caracteristiqueID",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "produit",
+      "otherEntityRelationshipName": "caracteristique",
+      "relationshipName": "produit",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}
