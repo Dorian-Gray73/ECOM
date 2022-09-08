@@ -1,7 +1,7 @@
 <template>
   <b-navbar id="navbar">
     <b-navbar-brand href="#">
-      <svg width="279" height="121" viewBox="0 0 279 121" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="279" height="96" viewBox="0 0 279 121" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M68 84.1042V32H76.4256V76.6394H97.6015V84.1042H68Z" fill="#243D53" />
         <path
           d="M128.536 77.6845H128.238C127.89 78.63 127.418 79.5507 126.821 80.4465C126.275 81.3423 125.554 82.1385 124.659 82.8352C123.814 83.4822 122.77 84.0047 121.528 84.4028C120.335 84.8009 118.943 85 117.352 85C113.326 85 110.194 83.7061 107.957 81.1183C105.77 78.5305 104.676 74.823 104.676 69.9958V45.2873H112.804V68.9507C112.804 74.9723 115.289 77.9831 120.26 77.9831C121.304 77.9831 122.323 77.8587 123.317 77.6099C124.311 77.3113 125.181 76.8883 125.927 76.3408C126.722 75.7934 127.343 75.0967 127.791 74.2507C128.288 73.4047 128.536 72.4094 128.536 71.2648V45.2873H136.664V84.1042H128.536V77.6845Z"
@@ -40,22 +40,24 @@
         </defs>
       </svg>
     </b-navbar-brand>
-    <b-nav-item href="#" right>
-      <font-awesome-icon icon="fa-solid fa-solid fa-house" />
-      Accueil
-    </b-nav-item>
-    <b-nav-item href="# right">
-      <font-awesome-icon icon="fa-solid fa-user" />
-      Connexion
-    </b-nav-item>
-    <b-nav-item href="#" right>
-      <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-      Recherche
-    </b-nav-item>
-    <b-nav-item href="#" right>
-      <font-awesome-icon :icon="['fa', 'fa-cart-shopping']" class="icon alt" />
-      Panier
-    </b-nav-item>
+    <div class="navbar-nav ml-auto">
+      <b-nav-item href="#" class="navbar-nav">
+        <font-awesome-icon icon="fa-solid fa-solid fa-house" />
+        Accueil
+      </b-nav-item>
+      <b-nav-item href="#" class="navbar-nav" v-on:click="openLogin()">
+        <font-awesome-icon icon="fa-solid fa-user" />
+        Connexion
+      </b-nav-item>
+      <b-nav-item href="#" class="navbar-nav">
+        <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+        Recherche
+      </b-nav-item>
+      <b-nav-item href="#" class="navbar-nav">
+        <font-awesome-icon :icon="['fa', 'fa-cart-shopping']" class="icon alt" />
+        Panier
+      </b-nav-item>
+    </div>
   </b-navbar>
 </template>
 <script lang="ts" src="./navbar.component.ts"></script>
@@ -63,10 +65,15 @@
 #navbar {
   background-color: #ffffff;
   margin-top: 32px;
+  margin-bottom: 26px;
   margin-left: 4%;
   margin-right: 4%;
   box-shadow: 0px 4px 16px rgba(94, 102, 161, 0.05);
   height: 96px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #000000;
 }
 
 li {

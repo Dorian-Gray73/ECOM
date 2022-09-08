@@ -22,6 +22,22 @@
 <style>
 html {
   background-color: #f7f7f7;
+  font-family: 'IBM Plex Sans';
+}
+
+#title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 31px;
+  margin-left: 4%;
+}
+
+#separate {
+  background-color: #5b85aa;
+  border: 2px solid #5b85aa;
+  height: 0px;
+  margin-top: 4px;
 }
 
 #app {
