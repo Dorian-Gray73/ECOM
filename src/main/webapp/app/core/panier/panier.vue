@@ -1,3 +1,3 @@
 <template>
-  <div>Recherche</div>
+  <div>Panier</div>
 </template>

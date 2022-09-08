@@ -41,7 +41,7 @@
       </svg>
     </b-navbar-brand>
     <div class="navbar-nav ml-auto">
-      <b-nav-item href="#" class="navbar-nav">
+      <b-nav-item href="/" class="navbar-nav">
         <font-awesome-icon icon="fa-solid fa-solid fa-house" />
         Accueil
       </b-nav-item>
@@ -49,11 +49,11 @@
         <font-awesome-icon icon="fa-solid fa-user" />
         Connexion
       </b-nav-item>
-      <b-nav-item href="#" class="navbar-nav">
+      <b-nav-item href="/recherche" class="navbar-nav">
         <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
         Recherche
       </b-nav-item>
-      <b-nav-item href="#" class="navbar-nav">
+      <b-nav-item href="/panier" class="navbar-nav">
         <font-awesome-icon :icon="['fa', 'fa-cart-shopping']" class="icon alt" />
         Panier
       </b-nav-item>
