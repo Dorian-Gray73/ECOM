@@ -27,11 +27,10 @@ import AlertService from './shared/alert/alert.service';
 
 import { BCarousel } from 'bootstrap-vue';
 import { BCarouselSlide } from 'bootstrap-vue';
+import { LayoutPlugin } from 'bootstrap-vue';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-
-library.add(fas);
 
 import '../content/scss/global.scss';
 import '../content/scss/vendor.scss';
@@ -47,12 +46,16 @@ config.initFortAwesome(Vue);
 bootstrapVueConfig.initBootstrapVue(Vue);
 Vue.use(Vue2Filters);
 Vue.use(ToastPlugin);
+Vue.use(LayoutPlugin);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('jhi-item-count', JhiItemCountComponent);
 Vue.component('jhi-sort-indicator', JhiSortIndicatorComponent);
 Vue.component('b-carousel', BCarousel);
 Vue.component('b-carousel-slide', BCarouselSlide);
 Vue.component('infinite-loading', InfiniteLoading);
+
+library.add(fas);
+
 const i18n = config.initI18N(Vue);
 const store = config.initVueXStore(Vue);
 

@@ -13,6 +13,8 @@ import account from '@/router/account';
 import admin from '@/router/admin';
 import entities from '@/router/entities';
 import pages from '@/router/pages';
+import Recherche from '@/core/recherche/recherche.vue';
+import Panier from '@/core/panier/panier.vue';
 
 Vue.use(Router);
 
@@ -24,6 +26,16 @@ const router = new Router({
       path: '/',
       name: 'Accueil',
       component: Accueil
+    },
+    {
+      path: '/recherche',
+      name: 'Recherche',
+      component: Recherche
+    },
+    {
+      path: '/panier',
+      name: 'Panier',
+      component: Panier
     },
     {
       path: '/forbidden',
