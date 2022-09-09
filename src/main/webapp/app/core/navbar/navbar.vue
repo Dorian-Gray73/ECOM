@@ -54,7 +54,7 @@
         Recherche
       </b-nav-item>
       <b-nav-item href="/panier" class="navbar-nav">
-        <font-awesome-icon :icon="['fa', 'fa-cart-shopping']" class="icon alt" />
+        <font-awesome-icon :icon="['fa', 'fa-basket-shopping']" class="icon alt" />
         Panier
       </b-nav-item>
     </div>
