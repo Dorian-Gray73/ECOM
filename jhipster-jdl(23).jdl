@@ -1,0 +1,69 @@
+entity Utilisateur {
+	utilisateurID Long,
+    utilisateurJhipsterID Long,
+	nom String,
+    prenom String,
+    courriel String,
+    adresse String,
+    type Type,
+}
+
+enum Type {
+    Admin, Acheteur
+}
+
+entity Produit {
+	produitID Long,
+    nom String,
+    prix Float,
+    lienImage String,
+    marque String,
+    modele String,
+    progressif Boolean,
+}
+
+entity Caracteristique {
+	caracteristiqueID Long,
+	produitID Long,
+    couleur String,
+    quantite Integer,
+}
+
+entity Transaction {
+	transactionID Long,
+	utilisateurID Long,
+    etat EtatProduit,
+    date LocalDate,
+}
+
+enum EtatProduit {
+	Encours, Achete
+}
+
+entity LigneTransaction {
+	transactionID Long,
+    caracteristiqueID Long,
+    quantite Integer,
+    prixUnitaire Float
+}
+
+entity Image {
+    produitID Long
+    lienImage String,
+}
+
+relationship OneToMany {
+	Utilisateur to Transaction
+
+	Transaction to LigneTransaction
+    
+    Produit to Caracteristique,
+
+	Caracteristique to Image
+
+	Produit to Image
+}
+
+relationship OneToOne {
+	Caracteristique to LigneTransaction
+}
