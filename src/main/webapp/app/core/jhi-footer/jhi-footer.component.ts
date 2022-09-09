@@ -4,9 +4,10 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class JhiFooter extends Vue {
   //Button return to navbar
   scrollMeTo(refName) {
-    var element = this.$refs[refName];
+    let element = this.$refs[refName];
+    let top;
     if (element instanceof HTMLElement) {
-      var top = element.offsetTop;
+      top = element.offsetTop;
     }
     window.scrollTo(0, top);
   }
