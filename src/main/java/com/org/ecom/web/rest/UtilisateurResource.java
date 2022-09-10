@@ -123,12 +123,6 @@ public class UtilisateurResource {
         Optional<Utilisateur> result = utilisateurRepository
             .findById(utilisateur.getId())
             .map(existingUtilisateur -> {
-                if (utilisateur.getUtilisateurID() != null) {
-                    existingUtilisateur.setUtilisateurID(utilisateur.getUtilisateurID());
-                }
-                if (utilisateur.getUtilisateurJhipsterID() != null) {
-                    existingUtilisateur.setUtilisateurJhipsterID(utilisateur.getUtilisateurJhipsterID());
-                }
                 if (utilisateur.getNom() != null) {
                     existingUtilisateur.setNom(utilisateur.getNom());
                 }

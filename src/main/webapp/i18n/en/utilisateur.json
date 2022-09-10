@@ -18,8 +18,6 @@
         "title": "Utilisateur"
       },
       "id": "ID",
-      "utilisateurID": "Utilisateur ID",
-      "utilisateurJhipsterID": "Utilisateur Jhipster ID",
       "nom": "Nom",
       "prenom": "Prenom",
       "courriel": "Courriel",

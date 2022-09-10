@@ -14,8 +14,6 @@ import { EtatProduit } from '@/shared/model/enumerations/etat-produit.model';
 
 const validations: any = {
   transaction: {
-    transactionID: {},
-    utilisateurID: {},
     etat: {},
     date: {},
   },

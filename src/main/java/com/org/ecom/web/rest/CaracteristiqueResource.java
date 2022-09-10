@@ -123,17 +123,14 @@ public class CaracteristiqueResource {
         Optional<Caracteristique> result = caracteristiqueRepository
             .findById(caracteristique.getId())
             .map(existingCaracteristique -> {
-                if (caracteristique.getCaracteristiqueID() != null) {
-                    existingCaracteristique.setCaracteristiqueID(caracteristique.getCaracteristiqueID());
-                }
-                if (caracteristique.getProduitID() != null) {
-                    existingCaracteristique.setProduitID(caracteristique.getProduitID());
-                }
                 if (caracteristique.getCouleur() != null) {
                     existingCaracteristique.setCouleur(caracteristique.getCouleur());
                 }
                 if (caracteristique.getQuantite() != null) {
                     existingCaracteristique.setQuantite(caracteristique.getQuantite());
+                }
+                if (caracteristique.getLienImage() != null) {
+                    existingCaracteristique.setLienImage(caracteristique.getLienImage());
                 }
 
                 return existingCaracteristique;

@@ -34,7 +34,7 @@ describe('Service Tests', () => {
     beforeEach(() => {
       service = new TransactionService();
       currentDate = new Date();
-      elemDefault = new Transaction(123, 0, 0, EtatProduit.Encours, currentDate);
+      elemDefault = new Transaction(123, EtatProduit.Encours, currentDate);
     });
 
     describe('Service methods', () => {
@@ -97,8 +97,6 @@ describe('Service Tests', () => {
       it('should update a Transaction', async () => {
         const returnedFromService = Object.assign(
           {
-            transactionID: 1,
-            utilisateurID: 1,
             etat: 'BBBBBB',
             date: dayjs(currentDate).format(DATE_FORMAT),
           },
@@ -132,9 +130,7 @@ describe('Service Tests', () => {
       it('should partial update a Transaction', async () => {
         const patchObject = Object.assign(
           {
-            transactionID: 1,
             etat: 'BBBBBB',
-            date: dayjs(currentDate).format(DATE_FORMAT),
           },
           new Transaction()
         );
@@ -167,8 +163,6 @@ describe('Service Tests', () => {
       it('should return a list of Transaction', async () => {
         const returnedFromService = Object.assign(
           {
-            transactionID: 1,
-            utilisateurID: 1,
             etat: 'BBBBBB',
             date: dayjs(currentDate).format(DATE_FORMAT),
           },

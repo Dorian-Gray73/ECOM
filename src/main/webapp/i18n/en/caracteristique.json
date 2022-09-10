@@ -18,12 +18,10 @@
         "title": "Caracteristique"
       },
       "id": "ID",
-      "caracteristiqueID": "Caracteristique ID",
-      "produitID": "Produit ID",
       "couleur": "Couleur",
       "quantite": "Quantite",
+      "lienImage": "Lien Image",
       "ligneTransaction": "Ligne Transaction",
-      "image": "Image",
       "produit": "Produit"
     }
   }

@@ -14,12 +14,6 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="utilisateur_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="utilisateur_jhipster_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="nom" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -56,8 +50,6 @@
                   tableName="utilisateur"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
-            <column name="utilisateur_id" type="numeric"/>
-            <column name="utilisateur_jhipster_id" type="numeric"/>
             <column name="nom" type="string"/>
             <column name="prenom" type="string"/>
             <column name="courriel" type="string"/>

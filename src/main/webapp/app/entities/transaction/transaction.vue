@@ -29,8 +29,6 @@
         <thead>
           <tr>
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
-            <th scope="row"><span v-text="$t('ecomApp.transaction.transactionID')">Transaction ID</span></th>
-            <th scope="row"><span v-text="$t('ecomApp.transaction.utilisateurID')">Utilisateur ID</span></th>
             <th scope="row"><span v-text="$t('ecomApp.transaction.etat')">Etat</span></th>
             <th scope="row"><span v-text="$t('ecomApp.transaction.date')">Date</span></th>
             <th scope="row"><span v-text="$t('ecomApp.transaction.utilisateur')">Utilisateur</span></th>
@@ -42,8 +40,6 @@
             <td>
               <router-link :to="{ name: 'TransactionView', params: { transactionId: transaction.id } }">{{ transaction.id }}</router-link>
             </td>
-            <td>{{ transaction.transactionID }}</td>
-            <td>{{ transaction.utilisateurID }}</td>
             <td v-text="$t('ecomApp.EtatProduit.' + transaction.etat)">{{ transaction.etat }}</td>
             <td>{{ transaction.date }}</td>
             <td>

@@ -32,12 +32,6 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class TransactionResourceIT {
 
-    private static final Long DEFAULT_TRANSACTION_ID = 1L;
-    private static final Long UPDATED_TRANSACTION_ID = 2L;
-
-    private static final Long DEFAULT_UTILISATEUR_ID = 1L;
-    private static final Long UPDATED_UTILISATEUR_ID = 2L;
-
     private static final EtatProduit DEFAULT_ETAT = EtatProduit.Encours;
     private static final EtatProduit UPDATED_ETAT = EtatProduit.Achete;
 
@@ -68,11 +62,7 @@ class TransactionResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Transaction createEntity(EntityManager em) {
-        Transaction transaction = new Transaction()
-            .transactionID(DEFAULT_TRANSACTION_ID)
-            .utilisateurID(DEFAULT_UTILISATEUR_ID)
-            .etat(DEFAULT_ETAT)
-            .date(DEFAULT_DATE);
+        Transaction transaction = new Transaction().etat(DEFAULT_ETAT).date(DEFAULT_DATE);
         return transaction;
     }
 
@@ -83,11 +73,7 @@ class TransactionResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Transaction createUpdatedEntity(EntityManager em) {
-        Transaction transaction = new Transaction()
-            .transactionID(UPDATED_TRANSACTION_ID)
-            .utilisateurID(UPDATED_UTILISATEUR_ID)
-            .etat(UPDATED_ETAT)
-            .date(UPDATED_DATE);
+        Transaction transaction = new Transaction().etat(UPDATED_ETAT).date(UPDATED_DATE);
         return transaction;
     }
 
@@ -109,8 +95,6 @@ class TransactionResourceIT {
         List<Transaction> transactionList = transactionRepository.findAll();
         assertThat(transactionList).hasSize(databaseSizeBeforeCreate + 1);
         Transaction testTransaction = transactionList.get(transactionList.size() - 1);
-        assertThat(testTransaction.getTransactionID()).isEqualTo(DEFAULT_TRANSACTION_ID);
-        assertThat(testTransaction.getUtilisateurID()).isEqualTo(DEFAULT_UTILISATEUR_ID);
         assertThat(testTransaction.getEtat()).isEqualTo(DEFAULT_ETAT);
         assertThat(testTransaction.getDate()).isEqualTo(DEFAULT_DATE);
     }
@@ -145,8 +129,6 @@ class TransactionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(transaction.getId().intValue())))
-            .andExpect(jsonPath("$.[*].transactionID").value(hasItem(DEFAULT_TRANSACTION_ID.intValue())))
-            .andExpect(jsonPath("$.[*].utilisateurID").value(hasItem(DEFAULT_UTILISATEUR_ID.intValue())))
             .andExpect(jsonPath("$.[*].etat").value(hasItem(DEFAULT_ETAT.toString())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
     }
@@ -163,8 +145,6 @@ class TransactionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(transaction.getId().intValue()))
-            .andExpect(jsonPath("$.transactionID").value(DEFAULT_TRANSACTION_ID.intValue()))
-            .andExpect(jsonPath("$.utilisateurID").value(DEFAULT_UTILISATEUR_ID.intValue()))
             .andExpect(jsonPath("$.etat").value(DEFAULT_ETAT.toString()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()));
     }
@@ -178,7 +158,7 @@ class TransactionResourceIT {
 
     @Test
     @Transactional
-    void putExistingTransaction() throws Exception {
+    void putNewTransaction() throws Exception {
         // Initialize the database
         transactionRepository.saveAndFlush(transaction);
 
@@ -188,11 +168,7 @@ class TransactionResourceIT {
         Transaction updatedTransaction = transactionRepository.findById(transaction.getId()).get();
         // Disconnect from session so that the updates on updatedTransaction are not directly saved in db
         em.detach(updatedTransaction);
-        updatedTransaction
-            .transactionID(UPDATED_TRANSACTION_ID)
-            .utilisateurID(UPDATED_UTILISATEUR_ID)
-            .etat(UPDATED_ETAT)
-            .date(UPDATED_DATE);
+        updatedTransaction.etat(UPDATED_ETAT).date(UPDATED_DATE);
 
         restTransactionMockMvc
             .perform(
@@ -206,8 +182,6 @@ class TransactionResourceIT {
         List<Transaction> transactionList = transactionRepository.findAll();
         assertThat(transactionList).hasSize(databaseSizeBeforeUpdate);
         Transaction testTransaction = transactionList.get(transactionList.size() - 1);
-        assertThat(testTransaction.getTransactionID()).isEqualTo(UPDATED_TRANSACTION_ID);
-        assertThat(testTransaction.getUtilisateurID()).isEqualTo(UPDATED_UTILISATEUR_ID);
         assertThat(testTransaction.getEtat()).isEqualTo(UPDATED_ETAT);
         assertThat(testTransaction.getDate()).isEqualTo(UPDATED_DATE);
     }
@@ -280,7 +254,7 @@ class TransactionResourceIT {
         Transaction partialUpdatedTransaction = new Transaction();
         partialUpdatedTransaction.setId(transaction.getId());
 
-        partialUpdatedTransaction.utilisateurID(UPDATED_UTILISATEUR_ID);
+        partialUpdatedTransaction.date(UPDATED_DATE);
 
         restTransactionMockMvc
             .perform(
@@ -294,10 +268,8 @@ class TransactionResourceIT {
         List<Transaction> transactionList = transactionRepository.findAll();
         assertThat(transactionList).hasSize(databaseSizeBeforeUpdate);
         Transaction testTransaction = transactionList.get(transactionList.size() - 1);
-        assertThat(testTransaction.getTransactionID()).isEqualTo(DEFAULT_TRANSACTION_ID);
-        assertThat(testTransaction.getUtilisateurID()).isEqualTo(UPDATED_UTILISATEUR_ID);
         assertThat(testTransaction.getEtat()).isEqualTo(DEFAULT_ETAT);
-        assertThat(testTransaction.getDate()).isEqualTo(DEFAULT_DATE);
+        assertThat(testTransaction.getDate()).isEqualTo(UPDATED_DATE);
     }
 
     @Test
@@ -312,11 +284,7 @@ class TransactionResourceIT {
         Transaction partialUpdatedTransaction = new Transaction();
         partialUpdatedTransaction.setId(transaction.getId());
 
-        partialUpdatedTransaction
-            .transactionID(UPDATED_TRANSACTION_ID)
-            .utilisateurID(UPDATED_UTILISATEUR_ID)
-            .etat(UPDATED_ETAT)
-            .date(UPDATED_DATE);
+        partialUpdatedTransaction.etat(UPDATED_ETAT).date(UPDATED_DATE);
 
         restTransactionMockMvc
             .perform(
@@ -330,8 +298,6 @@ class TransactionResourceIT {
         List<Transaction> transactionList = transactionRepository.findAll();
         assertThat(transactionList).hasSize(databaseSizeBeforeUpdate);
         Transaction testTransaction = transactionList.get(transactionList.size() - 1);
-        assertThat(testTransaction.getTransactionID()).isEqualTo(UPDATED_TRANSACTION_ID);
-        assertThat(testTransaction.getUtilisateurID()).isEqualTo(UPDATED_UTILISATEUR_ID);
         assertThat(testTransaction.getEtat()).isEqualTo(UPDATED_ETAT);
         assertThat(testTransaction.getDate()).isEqualTo(UPDATED_DATE);
     }

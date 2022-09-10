@@ -11,8 +11,6 @@ import CaracteristiqueService from '@/entities/caracteristique/caracteristique.s
 
 import LigneTransactionService from '@/entities/ligne-transaction/ligne-transaction.service';
 
-import ImageService from '@/entities/image/image.service';
-
 import ProduitService from '@/entities/produit/produit.service';
 import AlertService from '@/shared/alert/alert.service';
 
@@ -50,11 +48,6 @@ describe('Component Tests', () => {
 
           ligneTransactionService: () =>
             sinon.createStubInstance<LigneTransactionService>(LigneTransactionService, {
-              retrieve: sinon.stub().resolves({}),
-            } as any),
-
-          imageService: () =>
-            sinon.createStubInstance<ImageService>(ImageService, {
               retrieve: sinon.stub().resolves({}),
             } as any),
 

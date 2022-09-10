@@ -14,12 +14,6 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="transaction_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="utilisateur_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="etat" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -50,8 +44,6 @@
                   tableName="transaction"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
-            <column name="transaction_id" type="numeric"/>
-            <column name="utilisateur_id" type="numeric"/>
             <column name="etat" type="string"/>
             <column name="date" type="date"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

@@ -18,8 +18,6 @@
         "title": "Transaction"
       },
       "id": "ID",
-      "transactionID": "Transaction ID",
-      "utilisateurID": "Utilisateur ID",
       "etat": "Etat",
       "date": "Date",
       "ligneTransaction": "Ligne Transaction",

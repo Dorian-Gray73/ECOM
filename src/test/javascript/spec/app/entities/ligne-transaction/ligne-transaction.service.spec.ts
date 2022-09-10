@@ -29,7 +29,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new LigneTransactionService();
-      elemDefault = new LigneTransaction(123, 0, 0, 0, 0);
+      elemDefault = new LigneTransaction(123, 0, 0);
     });
 
     describe('Service methods', () => {
@@ -81,8 +81,6 @@ describe('Service Tests', () => {
       it('should update a LigneTransaction', async () => {
         const returnedFromService = Object.assign(
           {
-            transactionID: 1,
-            caracteristiqueID: 1,
             quantite: 1,
             prixUnitaire: 1,
           },
@@ -111,7 +109,6 @@ describe('Service Tests', () => {
       it('should partial update a LigneTransaction', async () => {
         const patchObject = Object.assign(
           {
-            caracteristiqueID: 1,
             prixUnitaire: 1,
           },
           new LigneTransaction()
@@ -140,8 +137,6 @@ describe('Service Tests', () => {
       it('should return a list of LigneTransaction', async () => {
         const returnedFromService = Object.assign(
           {
-            transactionID: 1,
-            caracteristiqueID: 1,
             quantite: 1,
             prixUnitaire: 1,
           },

@@ -15,37 +15,6 @@
             <input type="text" class="form-control" id="id" name="id" v-model="ligneTransaction.id" readonly />
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('ecomApp.ligneTransaction.transactionID')" for="ligne-transaction-transactionID"
-              >Transaction ID</label
-            >
-            <input
-              type="number"
-              class="form-control"
-              name="transactionID"
-              id="ligne-transaction-transactionID"
-              data-cy="transactionID"
-              :class="{ valid: !$v.ligneTransaction.transactionID.$invalid, invalid: $v.ligneTransaction.transactionID.$invalid }"
-              v-model.number="$v.ligneTransaction.transactionID.$model"
-            />
-          </div>
-          <div class="form-group">
-            <label
-              class="form-control-label"
-              v-text="$t('ecomApp.ligneTransaction.caracteristiqueID')"
-              for="ligne-transaction-caracteristiqueID"
-              >Caracteristique ID</label
-            >
-            <input
-              type="number"
-              class="form-control"
-              name="caracteristiqueID"
-              id="ligne-transaction-caracteristiqueID"
-              data-cy="caracteristiqueID"
-              :class="{ valid: !$v.ligneTransaction.caracteristiqueID.$invalid, invalid: $v.ligneTransaction.caracteristiqueID.$invalid }"
-              v-model.number="$v.ligneTransaction.caracteristiqueID.$model"
-            />
-          </div>
-          <div class="form-group">
             <label class="form-control-label" v-text="$t('ecomApp.ligneTransaction.quantite')" for="ligne-transaction-quantite"
               >Quantite</label
             >

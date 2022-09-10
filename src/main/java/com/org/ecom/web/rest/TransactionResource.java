@@ -123,12 +123,6 @@ public class TransactionResource {
         Optional<Transaction> result = transactionRepository
             .findById(transaction.getId())
             .map(existingTransaction -> {
-                if (transaction.getTransactionID() != null) {
-                    existingTransaction.setTransactionID(transaction.getTransactionID());
-                }
-                if (transaction.getUtilisateurID() != null) {
-                    existingTransaction.setUtilisateurID(transaction.getUtilisateurID());
-                }
                 if (transaction.getEtat() != null) {
                     existingTransaction.setEtat(transaction.getEtat());
                 }

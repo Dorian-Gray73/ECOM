@@ -7,12 +7,6 @@
         </h2>
         <dl class="row jh-entity-details">
           <dt>
-            <span v-text="$t('ecomApp.produit.produitID')">Produit ID</span>
-          </dt>
-          <dd>
-            <span>{{ produit.produitID }}</span>
-          </dd>
-          <dt>
             <span v-text="$t('ecomApp.produit.nom')">Nom</span>
           </dt>
           <dd>

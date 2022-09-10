@@ -29,17 +29,14 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class CaracteristiqueResourceIT {
 
-    private static final Long DEFAULT_CARACTERISTIQUE_ID = 1L;
-    private static final Long UPDATED_CARACTERISTIQUE_ID = 2L;
-
-    private static final Long DEFAULT_PRODUIT_ID = 1L;
-    private static final Long UPDATED_PRODUIT_ID = 2L;
-
     private static final String DEFAULT_COULEUR = "AAAAAAAAAA";
     private static final String UPDATED_COULEUR = "BBBBBBBBBB";
 
     private static final Integer DEFAULT_QUANTITE = 1;
     private static final Integer UPDATED_QUANTITE = 2;
+
+    private static final String DEFAULT_LIEN_IMAGE = "AAAAAAAAAA";
+    private static final String UPDATED_LIEN_IMAGE = "BBBBBBBBBB";
 
     private static final String ENTITY_API_URL = "/api/caracteristiques";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -66,10 +63,9 @@ class CaracteristiqueResourceIT {
      */
     public static Caracteristique createEntity(EntityManager em) {
         Caracteristique caracteristique = new Caracteristique()
-            .caracteristiqueID(DEFAULT_CARACTERISTIQUE_ID)
-            .produitID(DEFAULT_PRODUIT_ID)
             .couleur(DEFAULT_COULEUR)
-            .quantite(DEFAULT_QUANTITE);
+            .quantite(DEFAULT_QUANTITE)
+            .lienImage(DEFAULT_LIEN_IMAGE);
         return caracteristique;
     }
 
@@ -81,10 +77,9 @@ class CaracteristiqueResourceIT {
      */
     public static Caracteristique createUpdatedEntity(EntityManager em) {
         Caracteristique caracteristique = new Caracteristique()
-            .caracteristiqueID(UPDATED_CARACTERISTIQUE_ID)
-            .produitID(UPDATED_PRODUIT_ID)
             .couleur(UPDATED_COULEUR)
-            .quantite(UPDATED_QUANTITE);
+            .quantite(UPDATED_QUANTITE)
+            .lienImage(UPDATED_LIEN_IMAGE);
         return caracteristique;
     }
 
@@ -108,10 +103,9 @@ class CaracteristiqueResourceIT {
         List<Caracteristique> caracteristiqueList = caracteristiqueRepository.findAll();
         assertThat(caracteristiqueList).hasSize(databaseSizeBeforeCreate + 1);
         Caracteristique testCaracteristique = caracteristiqueList.get(caracteristiqueList.size() - 1);
-        assertThat(testCaracteristique.getCaracteristiqueID()).isEqualTo(DEFAULT_CARACTERISTIQUE_ID);
-        assertThat(testCaracteristique.getProduitID()).isEqualTo(DEFAULT_PRODUIT_ID);
         assertThat(testCaracteristique.getCouleur()).isEqualTo(DEFAULT_COULEUR);
         assertThat(testCaracteristique.getQuantite()).isEqualTo(DEFAULT_QUANTITE);
+        assertThat(testCaracteristique.getLienImage()).isEqualTo(DEFAULT_LIEN_IMAGE);
     }
 
     @Test
@@ -146,10 +140,9 @@ class CaracteristiqueResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(caracteristique.getId().intValue())))
-            .andExpect(jsonPath("$.[*].caracteristiqueID").value(hasItem(DEFAULT_CARACTERISTIQUE_ID.intValue())))
-            .andExpect(jsonPath("$.[*].produitID").value(hasItem(DEFAULT_PRODUIT_ID.intValue())))
             .andExpect(jsonPath("$.[*].couleur").value(hasItem(DEFAULT_COULEUR)))
-            .andExpect(jsonPath("$.[*].quantite").value(hasItem(DEFAULT_QUANTITE)));
+            .andExpect(jsonPath("$.[*].quantite").value(hasItem(DEFAULT_QUANTITE)))
+            .andExpect(jsonPath("$.[*].lienImage").value(hasItem(DEFAULT_LIEN_IMAGE)));
     }
 
     @Test
@@ -164,10 +157,9 @@ class CaracteristiqueResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(caracteristique.getId().intValue()))
-            .andExpect(jsonPath("$.caracteristiqueID").value(DEFAULT_CARACTERISTIQUE_ID.intValue()))
-            .andExpect(jsonPath("$.produitID").value(DEFAULT_PRODUIT_ID.intValue()))
             .andExpect(jsonPath("$.couleur").value(DEFAULT_COULEUR))
-            .andExpect(jsonPath("$.quantite").value(DEFAULT_QUANTITE));
+            .andExpect(jsonPath("$.quantite").value(DEFAULT_QUANTITE))
+            .andExpect(jsonPath("$.lienImage").value(DEFAULT_LIEN_IMAGE));
     }
 
     @Test
@@ -179,7 +171,7 @@ class CaracteristiqueResourceIT {
 
     @Test
     @Transactional
-    void putExistingCaracteristique() throws Exception {
+    void putNewCaracteristique() throws Exception {
         // Initialize the database
         caracteristiqueRepository.saveAndFlush(caracteristique);
 
@@ -189,11 +181,7 @@ class CaracteristiqueResourceIT {
         Caracteristique updatedCaracteristique = caracteristiqueRepository.findById(caracteristique.getId()).get();
         // Disconnect from session so that the updates on updatedCaracteristique are not directly saved in db
         em.detach(updatedCaracteristique);
-        updatedCaracteristique
-            .caracteristiqueID(UPDATED_CARACTERISTIQUE_ID)
-            .produitID(UPDATED_PRODUIT_ID)
-            .couleur(UPDATED_COULEUR)
-            .quantite(UPDATED_QUANTITE);
+        updatedCaracteristique.couleur(UPDATED_COULEUR).quantite(UPDATED_QUANTITE).lienImage(UPDATED_LIEN_IMAGE);
 
         restCaracteristiqueMockMvc
             .perform(
@@ -207,10 +195,9 @@ class CaracteristiqueResourceIT {
         List<Caracteristique> caracteristiqueList = caracteristiqueRepository.findAll();
         assertThat(caracteristiqueList).hasSize(databaseSizeBeforeUpdate);
         Caracteristique testCaracteristique = caracteristiqueList.get(caracteristiqueList.size() - 1);
-        assertThat(testCaracteristique.getCaracteristiqueID()).isEqualTo(UPDATED_CARACTERISTIQUE_ID);
-        assertThat(testCaracteristique.getProduitID()).isEqualTo(UPDATED_PRODUIT_ID);
         assertThat(testCaracteristique.getCouleur()).isEqualTo(UPDATED_COULEUR);
         assertThat(testCaracteristique.getQuantite()).isEqualTo(UPDATED_QUANTITE);
+        assertThat(testCaracteristique.getLienImage()).isEqualTo(UPDATED_LIEN_IMAGE);
     }
 
     @Test
@@ -295,10 +282,9 @@ class CaracteristiqueResourceIT {
         List<Caracteristique> caracteristiqueList = caracteristiqueRepository.findAll();
         assertThat(caracteristiqueList).hasSize(databaseSizeBeforeUpdate);
         Caracteristique testCaracteristique = caracteristiqueList.get(caracteristiqueList.size() - 1);
-        assertThat(testCaracteristique.getCaracteristiqueID()).isEqualTo(DEFAULT_CARACTERISTIQUE_ID);
-        assertThat(testCaracteristique.getProduitID()).isEqualTo(DEFAULT_PRODUIT_ID);
         assertThat(testCaracteristique.getCouleur()).isEqualTo(DEFAULT_COULEUR);
         assertThat(testCaracteristique.getQuantite()).isEqualTo(DEFAULT_QUANTITE);
+        assertThat(testCaracteristique.getLienImage()).isEqualTo(DEFAULT_LIEN_IMAGE);
     }
 
     @Test
@@ -313,11 +299,7 @@ class CaracteristiqueResourceIT {
         Caracteristique partialUpdatedCaracteristique = new Caracteristique();
         partialUpdatedCaracteristique.setId(caracteristique.getId());
 
-        partialUpdatedCaracteristique
-            .caracteristiqueID(UPDATED_CARACTERISTIQUE_ID)
-            .produitID(UPDATED_PRODUIT_ID)
-            .couleur(UPDATED_COULEUR)
-            .quantite(UPDATED_QUANTITE);
+        partialUpdatedCaracteristique.couleur(UPDATED_COULEUR).quantite(UPDATED_QUANTITE).lienImage(UPDATED_LIEN_IMAGE);
 
         restCaracteristiqueMockMvc
             .perform(
@@ -331,10 +313,9 @@ class CaracteristiqueResourceIT {
         List<Caracteristique> caracteristiqueList = caracteristiqueRepository.findAll();
         assertThat(caracteristiqueList).hasSize(databaseSizeBeforeUpdate);
         Caracteristique testCaracteristique = caracteristiqueList.get(caracteristiqueList.size() - 1);
-        assertThat(testCaracteristique.getCaracteristiqueID()).isEqualTo(UPDATED_CARACTERISTIQUE_ID);
-        assertThat(testCaracteristique.getProduitID()).isEqualTo(UPDATED_PRODUIT_ID);
         assertThat(testCaracteristique.getCouleur()).isEqualTo(UPDATED_COULEUR);
         assertThat(testCaracteristique.getQuantite()).isEqualTo(UPDATED_QUANTITE);
+        assertThat(testCaracteristique.getLienImage()).isEqualTo(UPDATED_LIEN_IMAGE);
     }
 
     @Test

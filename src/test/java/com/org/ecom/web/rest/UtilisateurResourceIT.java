@@ -30,12 +30,6 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class UtilisateurResourceIT {
 
-    private static final Long DEFAULT_UTILISATEUR_ID = 1L;
-    private static final Long UPDATED_UTILISATEUR_ID = 2L;
-
-    private static final Long DEFAULT_UTILISATEUR_JHIPSTER_ID = 1L;
-    private static final Long UPDATED_UTILISATEUR_JHIPSTER_ID = 2L;
-
     private static final String DEFAULT_NOM = "AAAAAAAAAA";
     private static final String UPDATED_NOM = "BBBBBBBBBB";
 
@@ -76,8 +70,6 @@ class UtilisateurResourceIT {
      */
     public static Utilisateur createEntity(EntityManager em) {
         Utilisateur utilisateur = new Utilisateur()
-            .utilisateurID(DEFAULT_UTILISATEUR_ID)
-            .utilisateurJhipsterID(DEFAULT_UTILISATEUR_JHIPSTER_ID)
             .nom(DEFAULT_NOM)
             .prenom(DEFAULT_PRENOM)
             .courriel(DEFAULT_COURRIEL)
@@ -94,8 +86,6 @@ class UtilisateurResourceIT {
      */
     public static Utilisateur createUpdatedEntity(EntityManager em) {
         Utilisateur utilisateur = new Utilisateur()
-            .utilisateurID(UPDATED_UTILISATEUR_ID)
-            .utilisateurJhipsterID(UPDATED_UTILISATEUR_JHIPSTER_ID)
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
             .courriel(UPDATED_COURRIEL)
@@ -122,8 +112,6 @@ class UtilisateurResourceIT {
         List<Utilisateur> utilisateurList = utilisateurRepository.findAll();
         assertThat(utilisateurList).hasSize(databaseSizeBeforeCreate + 1);
         Utilisateur testUtilisateur = utilisateurList.get(utilisateurList.size() - 1);
-        assertThat(testUtilisateur.getUtilisateurID()).isEqualTo(DEFAULT_UTILISATEUR_ID);
-        assertThat(testUtilisateur.getUtilisateurJhipsterID()).isEqualTo(DEFAULT_UTILISATEUR_JHIPSTER_ID);
         assertThat(testUtilisateur.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testUtilisateur.getPrenom()).isEqualTo(DEFAULT_PRENOM);
         assertThat(testUtilisateur.getCourriel()).isEqualTo(DEFAULT_COURRIEL);
@@ -161,8 +149,6 @@ class UtilisateurResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(utilisateur.getId().intValue())))
-            .andExpect(jsonPath("$.[*].utilisateurID").value(hasItem(DEFAULT_UTILISATEUR_ID.intValue())))
-            .andExpect(jsonPath("$.[*].utilisateurJhipsterID").value(hasItem(DEFAULT_UTILISATEUR_JHIPSTER_ID.intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].prenom").value(hasItem(DEFAULT_PRENOM)))
             .andExpect(jsonPath("$.[*].courriel").value(hasItem(DEFAULT_COURRIEL)))
@@ -182,8 +168,6 @@ class UtilisateurResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(utilisateur.getId().intValue()))
-            .andExpect(jsonPath("$.utilisateurID").value(DEFAULT_UTILISATEUR_ID.intValue()))
-            .andExpect(jsonPath("$.utilisateurJhipsterID").value(DEFAULT_UTILISATEUR_JHIPSTER_ID.intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.prenom").value(DEFAULT_PRENOM))
             .andExpect(jsonPath("$.courriel").value(DEFAULT_COURRIEL))
@@ -200,7 +184,7 @@ class UtilisateurResourceIT {
 
     @Test
     @Transactional
-    void putExistingUtilisateur() throws Exception {
+    void putNewUtilisateur() throws Exception {
         // Initialize the database
         utilisateurRepository.saveAndFlush(utilisateur);
 
@@ -210,14 +194,7 @@ class UtilisateurResourceIT {
         Utilisateur updatedUtilisateur = utilisateurRepository.findById(utilisateur.getId()).get();
         // Disconnect from session so that the updates on updatedUtilisateur are not directly saved in db
         em.detach(updatedUtilisateur);
-        updatedUtilisateur
-            .utilisateurID(UPDATED_UTILISATEUR_ID)
-            .utilisateurJhipsterID(UPDATED_UTILISATEUR_JHIPSTER_ID)
-            .nom(UPDATED_NOM)
-            .prenom(UPDATED_PRENOM)
-            .courriel(UPDATED_COURRIEL)
-            .adresse(UPDATED_ADRESSE)
-            .type(UPDATED_TYPE);
+        updatedUtilisateur.nom(UPDATED_NOM).prenom(UPDATED_PRENOM).courriel(UPDATED_COURRIEL).adresse(UPDATED_ADRESSE).type(UPDATED_TYPE);
 
         restUtilisateurMockMvc
             .perform(
@@ -231,8 +208,6 @@ class UtilisateurResourceIT {
         List<Utilisateur> utilisateurList = utilisateurRepository.findAll();
         assertThat(utilisateurList).hasSize(databaseSizeBeforeUpdate);
         Utilisateur testUtilisateur = utilisateurList.get(utilisateurList.size() - 1);
-        assertThat(testUtilisateur.getUtilisateurID()).isEqualTo(UPDATED_UTILISATEUR_ID);
-        assertThat(testUtilisateur.getUtilisateurJhipsterID()).isEqualTo(UPDATED_UTILISATEUR_JHIPSTER_ID);
         assertThat(testUtilisateur.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testUtilisateur.getPrenom()).isEqualTo(UPDATED_PRENOM);
         assertThat(testUtilisateur.getCourriel()).isEqualTo(UPDATED_COURRIEL);
@@ -308,7 +283,7 @@ class UtilisateurResourceIT {
         Utilisateur partialUpdatedUtilisateur = new Utilisateur();
         partialUpdatedUtilisateur.setId(utilisateur.getId());
 
-        partialUpdatedUtilisateur.utilisateurID(UPDATED_UTILISATEUR_ID).prenom(UPDATED_PRENOM).type(UPDATED_TYPE);
+        partialUpdatedUtilisateur.nom(UPDATED_NOM).adresse(UPDATED_ADRESSE);
 
         restUtilisateurMockMvc
             .perform(
@@ -322,13 +297,11 @@ class UtilisateurResourceIT {
         List<Utilisateur> utilisateurList = utilisateurRepository.findAll();
         assertThat(utilisateurList).hasSize(databaseSizeBeforeUpdate);
         Utilisateur testUtilisateur = utilisateurList.get(utilisateurList.size() - 1);
-        assertThat(testUtilisateur.getUtilisateurID()).isEqualTo(UPDATED_UTILISATEUR_ID);
-        assertThat(testUtilisateur.getUtilisateurJhipsterID()).isEqualTo(DEFAULT_UTILISATEUR_JHIPSTER_ID);
-        assertThat(testUtilisateur.getNom()).isEqualTo(DEFAULT_NOM);
-        assertThat(testUtilisateur.getPrenom()).isEqualTo(UPDATED_PRENOM);
+        assertThat(testUtilisateur.getNom()).isEqualTo(UPDATED_NOM);
+        assertThat(testUtilisateur.getPrenom()).isEqualTo(DEFAULT_PRENOM);
         assertThat(testUtilisateur.getCourriel()).isEqualTo(DEFAULT_COURRIEL);
-        assertThat(testUtilisateur.getAdresse()).isEqualTo(DEFAULT_ADRESSE);
-        assertThat(testUtilisateur.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testUtilisateur.getAdresse()).isEqualTo(UPDATED_ADRESSE);
+        assertThat(testUtilisateur.getType()).isEqualTo(DEFAULT_TYPE);
     }
 
     @Test
@@ -344,8 +317,6 @@ class UtilisateurResourceIT {
         partialUpdatedUtilisateur.setId(utilisateur.getId());
 
         partialUpdatedUtilisateur
-            .utilisateurID(UPDATED_UTILISATEUR_ID)
-            .utilisateurJhipsterID(UPDATED_UTILISATEUR_JHIPSTER_ID)
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
             .courriel(UPDATED_COURRIEL)
@@ -364,8 +335,6 @@ class UtilisateurResourceIT {
         List<Utilisateur> utilisateurList = utilisateurRepository.findAll();
         assertThat(utilisateurList).hasSize(databaseSizeBeforeUpdate);
         Utilisateur testUtilisateur = utilisateurList.get(utilisateurList.size() - 1);
-        assertThat(testUtilisateur.getUtilisateurID()).isEqualTo(UPDATED_UTILISATEUR_ID);
-        assertThat(testUtilisateur.getUtilisateurJhipsterID()).isEqualTo(UPDATED_UTILISATEUR_JHIPSTER_ID);
         assertThat(testUtilisateur.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testUtilisateur.getPrenom()).isEqualTo(UPDATED_PRENOM);
         assertThat(testUtilisateur.getCourriel()).isEqualTo(UPDATED_COURRIEL);

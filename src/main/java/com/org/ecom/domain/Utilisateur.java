@@ -15,7 +15,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "utilisateur")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SuppressWarnings("common-java:DuplicatedBlocks")
 public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,12 +24,6 @@ public class Utilisateur implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     @Column(name = "id")
     private Long id;
-
-    @Column(name = "utilisateur_id")
-    private Long utilisateurID;
-
-    @Column(name = "utilisateur_jhipster_id")
-    private Long utilisateurJhipsterID;
 
     @Column(name = "nom")
     private String nom;
@@ -66,32 +59,6 @@ public class Utilisateur implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getUtilisateurID() {
-        return this.utilisateurID;
-    }
-
-    public Utilisateur utilisateurID(Long utilisateurID) {
-        this.setUtilisateurID(utilisateurID);
-        return this;
-    }
-
-    public void setUtilisateurID(Long utilisateurID) {
-        this.utilisateurID = utilisateurID;
-    }
-
-    public Long getUtilisateurJhipsterID() {
-        return this.utilisateurJhipsterID;
-    }
-
-    public Utilisateur utilisateurJhipsterID(Long utilisateurJhipsterID) {
-        this.setUtilisateurJhipsterID(utilisateurJhipsterID);
-        return this;
-    }
-
-    public void setUtilisateurJhipsterID(Long utilisateurJhipsterID) {
-        this.utilisateurJhipsterID = utilisateurJhipsterID;
     }
 
     public String getNom() {
@@ -214,8 +181,6 @@ public class Utilisateur implements Serializable {
     public String toString() {
         return "Utilisateur{" +
             "id=" + getId() +
-            ", utilisateurID=" + getUtilisateurID() +
-            ", utilisateurJhipsterID=" + getUtilisateurJhipsterID() +
             ", nom='" + getNom() + "'" +
             ", prenom='" + getPrenom() + "'" +
             ", courriel='" + getCourriel() + "'" +

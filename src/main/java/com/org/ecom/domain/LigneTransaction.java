@@ -12,7 +12,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "ligne_transaction")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SuppressWarnings("common-java:DuplicatedBlocks")
 public class LigneTransaction implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,19 +22,13 @@ public class LigneTransaction implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "transaction_id")
-    private Long transactionID;
-
-    @Column(name = "caracteristique_id")
-    private Long caracteristiqueID;
-
     @Column(name = "quantite")
     private Integer quantite;
 
     @Column(name = "prix_unitaire")
     private Float prixUnitaire;
 
-    @JsonIgnoreProperties(value = { "ligneTransaction", "images", "produit" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "ligneTransaction", "produit" }, allowSetters = true)
     @OneToOne(mappedBy = "ligneTransaction")
     private Caracteristique caracteristique;
 
@@ -56,32 +49,6 @@ public class LigneTransaction implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getTransactionID() {
-        return this.transactionID;
-    }
-
-    public LigneTransaction transactionID(Long transactionID) {
-        this.setTransactionID(transactionID);
-        return this;
-    }
-
-    public void setTransactionID(Long transactionID) {
-        this.transactionID = transactionID;
-    }
-
-    public Long getCaracteristiqueID() {
-        return this.caracteristiqueID;
-    }
-
-    public LigneTransaction caracteristiqueID(Long caracteristiqueID) {
-        this.setCaracteristiqueID(caracteristiqueID);
-        return this;
-    }
-
-    public void setCaracteristiqueID(Long caracteristiqueID) {
-        this.caracteristiqueID = caracteristiqueID;
     }
 
     public Integer getQuantite() {
@@ -166,8 +133,6 @@ public class LigneTransaction implements Serializable {
     public String toString() {
         return "LigneTransaction{" +
             "id=" + getId() +
-            ", transactionID=" + getTransactionID() +
-            ", caracteristiqueID=" + getCaracteristiqueID() +
             ", quantite=" + getQuantite() +
             ", prixUnitaire=" + getPrixUnitaire() +
             "}";

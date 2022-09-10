@@ -29,9 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class ProduitResourceIT {
 
-    private static final Long DEFAULT_PRODUIT_ID = 1L;
-    private static final Long UPDATED_PRODUIT_ID = 2L;
-
     private static final String DEFAULT_NOM = "AAAAAAAAAA";
     private static final String UPDATED_NOM = "BBBBBBBBBB";
 
@@ -75,7 +72,6 @@ class ProduitResourceIT {
      */
     public static Produit createEntity(EntityManager em) {
         Produit produit = new Produit()
-            .produitID(DEFAULT_PRODUIT_ID)
             .nom(DEFAULT_NOM)
             .prix(DEFAULT_PRIX)
             .lienImage(DEFAULT_LIEN_IMAGE)
@@ -93,7 +89,6 @@ class ProduitResourceIT {
      */
     public static Produit createUpdatedEntity(EntityManager em) {
         Produit produit = new Produit()
-            .produitID(UPDATED_PRODUIT_ID)
             .nom(UPDATED_NOM)
             .prix(UPDATED_PRIX)
             .lienImage(UPDATED_LIEN_IMAGE)
@@ -121,7 +116,6 @@ class ProduitResourceIT {
         List<Produit> produitList = produitRepository.findAll();
         assertThat(produitList).hasSize(databaseSizeBeforeCreate + 1);
         Produit testProduit = produitList.get(produitList.size() - 1);
-        assertThat(testProduit.getProduitID()).isEqualTo(DEFAULT_PRODUIT_ID);
         assertThat(testProduit.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testProduit.getPrix()).isEqualTo(DEFAULT_PRIX);
         assertThat(testProduit.getLienImage()).isEqualTo(DEFAULT_LIEN_IMAGE);
@@ -160,7 +154,6 @@ class ProduitResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(produit.getId().intValue())))
-            .andExpect(jsonPath("$.[*].produitID").value(hasItem(DEFAULT_PRODUIT_ID.intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].prix").value(hasItem(DEFAULT_PRIX.doubleValue())))
             .andExpect(jsonPath("$.[*].lienImage").value(hasItem(DEFAULT_LIEN_IMAGE)))
@@ -181,7 +174,6 @@ class ProduitResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(produit.getId().intValue()))
-            .andExpect(jsonPath("$.produitID").value(DEFAULT_PRODUIT_ID.intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.prix").value(DEFAULT_PRIX.doubleValue()))
             .andExpect(jsonPath("$.lienImage").value(DEFAULT_LIEN_IMAGE))
@@ -199,7 +191,7 @@ class ProduitResourceIT {
 
     @Test
     @Transactional
-    void putExistingProduit() throws Exception {
+    void putNewProduit() throws Exception {
         // Initialize the database
         produitRepository.saveAndFlush(produit);
 
@@ -210,7 +202,6 @@ class ProduitResourceIT {
         // Disconnect from session so that the updates on updatedProduit are not directly saved in db
         em.detach(updatedProduit);
         updatedProduit
-            .produitID(UPDATED_PRODUIT_ID)
             .nom(UPDATED_NOM)
             .prix(UPDATED_PRIX)
             .lienImage(UPDATED_LIEN_IMAGE)
@@ -230,7 +221,6 @@ class ProduitResourceIT {
         List<Produit> produitList = produitRepository.findAll();
         assertThat(produitList).hasSize(databaseSizeBeforeUpdate);
         Produit testProduit = produitList.get(produitList.size() - 1);
-        assertThat(testProduit.getProduitID()).isEqualTo(UPDATED_PRODUIT_ID);
         assertThat(testProduit.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testProduit.getPrix()).isEqualTo(UPDATED_PRIX);
         assertThat(testProduit.getLienImage()).isEqualTo(UPDATED_LIEN_IMAGE);
@@ -307,7 +297,7 @@ class ProduitResourceIT {
         Produit partialUpdatedProduit = new Produit();
         partialUpdatedProduit.setId(produit.getId());
 
-        partialUpdatedProduit.prix(UPDATED_PRIX).lienImage(UPDATED_LIEN_IMAGE).marque(UPDATED_MARQUE);
+        partialUpdatedProduit.lienImage(UPDATED_LIEN_IMAGE).marque(UPDATED_MARQUE).modele(UPDATED_MODELE);
 
         restProduitMockMvc
             .perform(
@@ -321,12 +311,11 @@ class ProduitResourceIT {
         List<Produit> produitList = produitRepository.findAll();
         assertThat(produitList).hasSize(databaseSizeBeforeUpdate);
         Produit testProduit = produitList.get(produitList.size() - 1);
-        assertThat(testProduit.getProduitID()).isEqualTo(DEFAULT_PRODUIT_ID);
         assertThat(testProduit.getNom()).isEqualTo(DEFAULT_NOM);
-        assertThat(testProduit.getPrix()).isEqualTo(UPDATED_PRIX);
+        assertThat(testProduit.getPrix()).isEqualTo(DEFAULT_PRIX);
         assertThat(testProduit.getLienImage()).isEqualTo(UPDATED_LIEN_IMAGE);
         assertThat(testProduit.getMarque()).isEqualTo(UPDATED_MARQUE);
-        assertThat(testProduit.getModele()).isEqualTo(DEFAULT_MODELE);
+        assertThat(testProduit.getModele()).isEqualTo(UPDATED_MODELE);
         assertThat(testProduit.getProgressif()).isEqualTo(DEFAULT_PROGRESSIF);
     }
 
@@ -343,7 +332,6 @@ class ProduitResourceIT {
         partialUpdatedProduit.setId(produit.getId());
 
         partialUpdatedProduit
-            .produitID(UPDATED_PRODUIT_ID)
             .nom(UPDATED_NOM)
             .prix(UPDATED_PRIX)
             .lienImage(UPDATED_LIEN_IMAGE)
@@ -363,7 +351,6 @@ class ProduitResourceIT {
         List<Produit> produitList = produitRepository.findAll();
         assertThat(produitList).hasSize(databaseSizeBeforeUpdate);
         Produit testProduit = produitList.get(produitList.size() - 1);
-        assertThat(testProduit.getProduitID()).isEqualTo(UPDATED_PRODUIT_ID);
         assertThat(testProduit.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testProduit.getPrix()).isEqualTo(UPDATED_PRIX);
         assertThat(testProduit.getLienImage()).isEqualTo(UPDATED_LIEN_IMAGE);

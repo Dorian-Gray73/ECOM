@@ -29,8 +29,6 @@
         <thead>
           <tr>
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
-            <th scope="row"><span v-text="$t('ecomApp.ligneTransaction.transactionID')">Transaction ID</span></th>
-            <th scope="row"><span v-text="$t('ecomApp.ligneTransaction.caracteristiqueID')">Caracteristique ID</span></th>
             <th scope="row"><span v-text="$t('ecomApp.ligneTransaction.quantite')">Quantite</span></th>
             <th scope="row"><span v-text="$t('ecomApp.ligneTransaction.prixUnitaire')">Prix Unitaire</span></th>
             <th scope="row"><span v-text="$t('ecomApp.ligneTransaction.transaction')">Transaction</span></th>
@@ -44,8 +42,6 @@
                 ligneTransaction.id
               }}</router-link>
             </td>
-            <td>{{ ligneTransaction.transactionID }}</td>
-            <td>{{ ligneTransaction.caracteristiqueID }}</td>
             <td>{{ ligneTransaction.quantite }}</td>
             <td>{{ ligneTransaction.prixUnitaire }}</td>
             <td>

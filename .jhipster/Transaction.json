@@ -6,14 +6,6 @@
   "entityTableName": "transaction",
   "fields": [
     {
-      "fieldName": "transactionID",
-      "fieldType": "Long"
-    },
-    {
-      "fieldName": "utilisateurID",
-      "fieldType": "Long"
-    },
-    {
       "fieldName": "etat",
       "fieldType": "EtatProduit",
       "fieldValues": "Encours,Achete"

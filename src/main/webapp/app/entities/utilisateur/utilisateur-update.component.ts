@@ -11,8 +11,6 @@ import { Type } from '@/shared/model/enumerations/type.model';
 
 const validations: any = {
   utilisateur: {
-    utilisateurID: {},
-    utilisateurJhipsterID: {},
     nom: {},
     prenom: {},
     courriel: {},

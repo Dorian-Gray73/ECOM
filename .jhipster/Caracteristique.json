@@ -6,20 +6,16 @@
   "entityTableName": "caracteristique",
   "fields": [
     {
-      "fieldName": "caracteristiqueID",
-      "fieldType": "Long"
-    },
-    {
-      "fieldName": "produitID",
-      "fieldType": "Long"
-    },
-    {
       "fieldName": "couleur",
       "fieldType": "String"
     },
     {
       "fieldName": "quantite",
       "fieldType": "Integer"
+    },
+    {
+      "fieldName": "lienImage",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,
@@ -34,12 +30,6 @@
       "ownerSide": true,
       "relationshipName": "ligneTransaction",
       "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityName": "image",
-      "otherEntityRelationshipName": "caracteristique",
-      "relationshipName": "image",
-      "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "produit",

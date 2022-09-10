@@ -30,7 +30,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new UtilisateurService();
-      elemDefault = new Utilisateur(123, 0, 0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', Type.Admin);
+      elemDefault = new Utilisateur(123, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', Type.Admin);
     });
 
     describe('Service methods', () => {
@@ -82,8 +82,6 @@ describe('Service Tests', () => {
       it('should update a Utilisateur', async () => {
         const returnedFromService = Object.assign(
           {
-            utilisateurID: 1,
-            utilisateurJhipsterID: 1,
             nom: 'BBBBBB',
             prenom: 'BBBBBB',
             courriel: 'BBBBBB',
@@ -115,8 +113,7 @@ describe('Service Tests', () => {
       it('should partial update a Utilisateur', async () => {
         const patchObject = Object.assign(
           {
-            utilisateurJhipsterID: 1,
-            nom: 'BBBBBB',
+            prenom: 'BBBBBB',
             courriel: 'BBBBBB',
             type: 'BBBBBB',
           },
@@ -146,8 +143,6 @@ describe('Service Tests', () => {
       it('should return a list of Utilisateur', async () => {
         const returnedFromService = Object.assign(
           {
-            utilisateurID: 1,
-            utilisateurJhipsterID: 1,
             nom: 'BBBBBB',
             prenom: 'BBBBBB',
             courriel: 'BBBBBB',

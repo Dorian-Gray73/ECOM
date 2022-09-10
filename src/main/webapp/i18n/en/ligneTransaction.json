@@ -18,8 +18,6 @@
         "title": "Ligne Transaction"
       },
       "id": "ID",
-      "transactionID": "Transaction ID",
-      "caracteristiqueID": "Caracteristique ID",
       "quantite": "Quantite",
       "prixUnitaire": "Prix Unitaire",
       "caracteristique": "Caracteristique",
