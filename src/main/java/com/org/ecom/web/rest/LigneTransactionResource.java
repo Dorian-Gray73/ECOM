@@ -126,12 +126,6 @@ public class LigneTransactionResource {
         Optional<LigneTransaction> result = ligneTransactionRepository
             .findById(ligneTransaction.getId())
             .map(existingLigneTransaction -> {
-                if (ligneTransaction.getTransactionID() != null) {
-                    existingLigneTransaction.setTransactionID(ligneTransaction.getTransactionID());
-                }
-                if (ligneTransaction.getCaracteristiqueID() != null) {
-                    existingLigneTransaction.setCaracteristiqueID(ligneTransaction.getCaracteristiqueID());
-                }
                 if (ligneTransaction.getQuantite() != null) {
                     existingLigneTransaction.setQuantite(ligneTransaction.getQuantite());
                 }

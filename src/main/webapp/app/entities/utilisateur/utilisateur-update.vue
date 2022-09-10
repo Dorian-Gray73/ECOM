@@ -15,37 +15,6 @@
             <input type="text" class="form-control" id="id" name="id" v-model="utilisateur.id" readonly />
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('ecomApp.utilisateur.utilisateurID')" for="utilisateur-utilisateurID"
-              >Utilisateur ID</label
-            >
-            <input
-              type="number"
-              class="form-control"
-              name="utilisateurID"
-              id="utilisateur-utilisateurID"
-              data-cy="utilisateurID"
-              :class="{ valid: !$v.utilisateur.utilisateurID.$invalid, invalid: $v.utilisateur.utilisateurID.$invalid }"
-              v-model.number="$v.utilisateur.utilisateurID.$model"
-            />
-          </div>
-          <div class="form-group">
-            <label
-              class="form-control-label"
-              v-text="$t('ecomApp.utilisateur.utilisateurJhipsterID')"
-              for="utilisateur-utilisateurJhipsterID"
-              >Utilisateur Jhipster ID</label
-            >
-            <input
-              type="number"
-              class="form-control"
-              name="utilisateurJhipsterID"
-              id="utilisateur-utilisateurJhipsterID"
-              data-cy="utilisateurJhipsterID"
-              :class="{ valid: !$v.utilisateur.utilisateurJhipsterID.$invalid, invalid: $v.utilisateur.utilisateurJhipsterID.$invalid }"
-              v-model.number="$v.utilisateur.utilisateurJhipsterID.$model"
-            />
-          </div>
-          <div class="form-group">
             <label class="form-control-label" v-text="$t('ecomApp.utilisateur.nom')" for="utilisateur-nom">Nom</label>
             <input
               type="text"

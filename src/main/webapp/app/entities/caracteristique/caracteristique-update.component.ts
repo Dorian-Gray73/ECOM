@@ -5,9 +5,6 @@ import AlertService from '@/shared/alert/alert.service';
 import LigneTransactionService from '@/entities/ligne-transaction/ligne-transaction.service';
 import { ILigneTransaction } from '@/shared/model/ligne-transaction.model';
 
-import ImageService from '@/entities/image/image.service';
-import { IImage } from '@/shared/model/image.model';
-
 import ProduitService from '@/entities/produit/produit.service';
 import { IProduit } from '@/shared/model/produit.model';
 
@@ -16,10 +13,9 @@ import CaracteristiqueService from './caracteristique.service';
 
 const validations: any = {
   caracteristique: {
-    caracteristiqueID: {},
-    produitID: {},
     couleur: {},
     quantite: {},
+    lienImage: {},
   },
 };
 
@@ -35,10 +31,6 @@ export default class CaracteristiqueUpdate extends Vue {
   @Inject('ligneTransactionService') private ligneTransactionService: () => LigneTransactionService;
 
   public ligneTransactions: ILigneTransaction[] = [];
-
-  @Inject('imageService') private imageService: () => ImageService;
-
-  public images: IImage[] = [];
 
   @Inject('produitService') private produitService: () => ProduitService;
 
@@ -128,11 +120,6 @@ export default class CaracteristiqueUpdate extends Vue {
       .retrieve()
       .then(res => {
         this.ligneTransactions = res.data;
-      });
-    this.imageService()
-      .retrieve()
-      .then(res => {
-        this.images = res.data;
       });
     this.produitService()
       .retrieve()

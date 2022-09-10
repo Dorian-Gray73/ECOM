@@ -18,15 +18,13 @@
         "title": "Produit"
       },
       "id": "ID",
-      "produitID": "Produit ID",
       "nom": "Nom",
       "prix": "Prix",
       "lienImage": "Lien Image",
       "marque": "Marque",
       "modele": "Modele",
       "progressif": "Progressif",
-      "caracteristique": "Caracteristique",
-      "image": "Image"
+      "caracteristique": "Caracteristique"
     }
   }
 }

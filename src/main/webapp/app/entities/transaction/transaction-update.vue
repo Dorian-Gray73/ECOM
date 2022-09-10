@@ -15,34 +15,6 @@
             <input type="text" class="form-control" id="id" name="id" v-model="transaction.id" readonly />
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('ecomApp.transaction.transactionID')" for="transaction-transactionID"
-              >Transaction ID</label
-            >
-            <input
-              type="number"
-              class="form-control"
-              name="transactionID"
-              id="transaction-transactionID"
-              data-cy="transactionID"
-              :class="{ valid: !$v.transaction.transactionID.$invalid, invalid: $v.transaction.transactionID.$invalid }"
-              v-model.number="$v.transaction.transactionID.$model"
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" v-text="$t('ecomApp.transaction.utilisateurID')" for="transaction-utilisateurID"
-              >Utilisateur ID</label
-            >
-            <input
-              type="number"
-              class="form-control"
-              name="utilisateurID"
-              id="transaction-utilisateurID"
-              data-cy="utilisateurID"
-              :class="{ valid: !$v.transaction.utilisateurID.$invalid, invalid: $v.transaction.utilisateurID.$invalid }"
-              v-model.number="$v.transaction.utilisateurID.$model"
-            />
-          </div>
-          <div class="form-group">
             <label class="form-control-label" v-text="$t('ecomApp.transaction.etat')" for="transaction-etat">Etat</label>
             <select
               class="form-control"

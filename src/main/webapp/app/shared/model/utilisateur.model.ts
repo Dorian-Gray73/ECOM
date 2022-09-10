@@ -3,8 +3,6 @@ import { ITransaction } from '@/shared/model/transaction.model';
 import { Type } from '@/shared/model/enumerations/type.model';
 export interface IUtilisateur {
   id?: number;
-  utilisateurID?: number | null;
-  utilisateurJhipsterID?: number | null;
   nom?: string | null;
   prenom?: string | null;
   courriel?: string | null;
@@ -16,8 +14,6 @@ export interface IUtilisateur {
 export class Utilisateur implements IUtilisateur {
   constructor(
     public id?: number,
-    public utilisateurID?: number | null,
-    public utilisateurJhipsterID?: number | null,
     public nom?: string | null,
     public prenom?: string | null,
     public courriel?: string | null,

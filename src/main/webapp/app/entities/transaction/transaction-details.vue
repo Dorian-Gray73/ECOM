@@ -7,18 +7,6 @@
         </h2>
         <dl class="row jh-entity-details">
           <dt>
-            <span v-text="$t('ecomApp.transaction.transactionID')">Transaction ID</span>
-          </dt>
-          <dd>
-            <span>{{ transaction.transactionID }}</span>
-          </dd>
-          <dt>
-            <span v-text="$t('ecomApp.transaction.utilisateurID')">Utilisateur ID</span>
-          </dt>
-          <dd>
-            <span>{{ transaction.utilisateurID }}</span>
-          </dd>
-          <dt>
             <span v-text="$t('ecomApp.transaction.etat')">Etat</span>
           </dt>
           <dd>

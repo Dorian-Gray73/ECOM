@@ -29,8 +29,6 @@
         <thead>
           <tr>
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
-            <th scope="row"><span v-text="$t('ecomApp.utilisateur.utilisateurID')">Utilisateur ID</span></th>
-            <th scope="row"><span v-text="$t('ecomApp.utilisateur.utilisateurJhipsterID')">Utilisateur Jhipster ID</span></th>
             <th scope="row"><span v-text="$t('ecomApp.utilisateur.nom')">Nom</span></th>
             <th scope="row"><span v-text="$t('ecomApp.utilisateur.prenom')">Prenom</span></th>
             <th scope="row"><span v-text="$t('ecomApp.utilisateur.courriel')">Courriel</span></th>
@@ -44,8 +42,6 @@
             <td>
               <router-link :to="{ name: 'UtilisateurView', params: { utilisateurId: utilisateur.id } }">{{ utilisateur.id }}</router-link>
             </td>
-            <td>{{ utilisateur.utilisateurID }}</td>
-            <td>{{ utilisateur.utilisateurJhipsterID }}</td>
             <td>{{ utilisateur.nom }}</td>
             <td>{{ utilisateur.prenom }}</td>
             <td>{{ utilisateur.courriel }}</td>

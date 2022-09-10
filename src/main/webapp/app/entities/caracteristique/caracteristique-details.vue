@@ -7,18 +7,6 @@
         </h2>
         <dl class="row jh-entity-details">
           <dt>
-            <span v-text="$t('ecomApp.caracteristique.caracteristiqueID')">Caracteristique ID</span>
-          </dt>
-          <dd>
-            <span>{{ caracteristique.caracteristiqueID }}</span>
-          </dd>
-          <dt>
-            <span v-text="$t('ecomApp.caracteristique.produitID')">Produit ID</span>
-          </dt>
-          <dd>
-            <span>{{ caracteristique.produitID }}</span>
-          </dd>
-          <dt>
             <span v-text="$t('ecomApp.caracteristique.couleur')">Couleur</span>
           </dt>
           <dd>
@@ -29,6 +17,12 @@
           </dt>
           <dd>
             <span>{{ caracteristique.quantite }}</span>
+          </dd>
+          <dt>
+            <span v-text="$t('ecomApp.caracteristique.lienImage')">Lien Image</span>
+          </dt>
+          <dd>
+            <span>{{ caracteristique.lienImage }}</span>
           </dd>
           <dt>
             <span v-text="$t('ecomApp.caracteristique.ligneTransaction')">Ligne Transaction</span>

@@ -6,14 +6,6 @@
   "entityTableName": "ligne_transaction",
   "fields": [
     {
-      "fieldName": "transactionID",
-      "fieldType": "Long"
-    },
-    {
-      "fieldName": "caracteristiqueID",
-      "fieldType": "Long"
-    },
-    {
       "fieldName": "quantite",
       "fieldType": "Integer"
     },

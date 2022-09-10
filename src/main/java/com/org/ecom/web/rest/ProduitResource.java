@@ -121,9 +121,6 @@ public class ProduitResource {
         Optional<Produit> result = produitRepository
             .findById(produit.getId())
             .map(existingProduit -> {
-                if (produit.getProduitID() != null) {
-                    existingProduit.setProduitID(produit.getProduitID());
-                }
                 if (produit.getNom() != null) {
                     existingProduit.setNom(produit.getNom());
                 }

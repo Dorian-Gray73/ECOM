@@ -10,8 +10,6 @@ import ProduitClass from '@/entities/produit/produit-update.component';
 import ProduitService from '@/entities/produit/produit.service';
 
 import CaracteristiqueService from '@/entities/caracteristique/caracteristique.service';
-
-import ImageService from '@/entities/image/image.service';
 import AlertService from '@/shared/alert/alert.service';
 
 const localVue = createLocalVue();
@@ -48,11 +46,6 @@ describe('Component Tests', () => {
 
           caracteristiqueService: () =>
             sinon.createStubInstance<CaracteristiqueService>(CaracteristiqueService, {
-              retrieve: sinon.stub().resolves({}),
-            } as any),
-
-          imageService: () =>
-            sinon.createStubInstance<ImageService>(ImageService, {
               retrieve: sinon.stub().resolves({}),
             } as any),
         },

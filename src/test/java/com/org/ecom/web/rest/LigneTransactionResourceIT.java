@@ -29,12 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class LigneTransactionResourceIT {
 
-    private static final Long DEFAULT_TRANSACTION_ID = 1L;
-    private static final Long UPDATED_TRANSACTION_ID = 2L;
-
-    private static final Long DEFAULT_CARACTERISTIQUE_ID = 1L;
-    private static final Long UPDATED_CARACTERISTIQUE_ID = 2L;
-
     private static final Integer DEFAULT_QUANTITE = 1;
     private static final Integer UPDATED_QUANTITE = 2;
 
@@ -65,11 +59,7 @@ class LigneTransactionResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static LigneTransaction createEntity(EntityManager em) {
-        LigneTransaction ligneTransaction = new LigneTransaction()
-            .transactionID(DEFAULT_TRANSACTION_ID)
-            .caracteristiqueID(DEFAULT_CARACTERISTIQUE_ID)
-            .quantite(DEFAULT_QUANTITE)
-            .prixUnitaire(DEFAULT_PRIX_UNITAIRE);
+        LigneTransaction ligneTransaction = new LigneTransaction().quantite(DEFAULT_QUANTITE).prixUnitaire(DEFAULT_PRIX_UNITAIRE);
         return ligneTransaction;
     }
 
@@ -80,11 +70,7 @@ class LigneTransactionResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static LigneTransaction createUpdatedEntity(EntityManager em) {
-        LigneTransaction ligneTransaction = new LigneTransaction()
-            .transactionID(UPDATED_TRANSACTION_ID)
-            .caracteristiqueID(UPDATED_CARACTERISTIQUE_ID)
-            .quantite(UPDATED_QUANTITE)
-            .prixUnitaire(UPDATED_PRIX_UNITAIRE);
+        LigneTransaction ligneTransaction = new LigneTransaction().quantite(UPDATED_QUANTITE).prixUnitaire(UPDATED_PRIX_UNITAIRE);
         return ligneTransaction;
     }
 
@@ -108,8 +94,6 @@ class LigneTransactionResourceIT {
         List<LigneTransaction> ligneTransactionList = ligneTransactionRepository.findAll();
         assertThat(ligneTransactionList).hasSize(databaseSizeBeforeCreate + 1);
         LigneTransaction testLigneTransaction = ligneTransactionList.get(ligneTransactionList.size() - 1);
-        assertThat(testLigneTransaction.getTransactionID()).isEqualTo(DEFAULT_TRANSACTION_ID);
-        assertThat(testLigneTransaction.getCaracteristiqueID()).isEqualTo(DEFAULT_CARACTERISTIQUE_ID);
         assertThat(testLigneTransaction.getQuantite()).isEqualTo(DEFAULT_QUANTITE);
         assertThat(testLigneTransaction.getPrixUnitaire()).isEqualTo(DEFAULT_PRIX_UNITAIRE);
     }
@@ -146,8 +130,6 @@ class LigneTransactionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(ligneTransaction.getId().intValue())))
-            .andExpect(jsonPath("$.[*].transactionID").value(hasItem(DEFAULT_TRANSACTION_ID.intValue())))
-            .andExpect(jsonPath("$.[*].caracteristiqueID").value(hasItem(DEFAULT_CARACTERISTIQUE_ID.intValue())))
             .andExpect(jsonPath("$.[*].quantite").value(hasItem(DEFAULT_QUANTITE)))
             .andExpect(jsonPath("$.[*].prixUnitaire").value(hasItem(DEFAULT_PRIX_UNITAIRE.doubleValue())));
     }
@@ -164,8 +146,6 @@ class LigneTransactionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(ligneTransaction.getId().intValue()))
-            .andExpect(jsonPath("$.transactionID").value(DEFAULT_TRANSACTION_ID.intValue()))
-            .andExpect(jsonPath("$.caracteristiqueID").value(DEFAULT_CARACTERISTIQUE_ID.intValue()))
             .andExpect(jsonPath("$.quantite").value(DEFAULT_QUANTITE))
             .andExpect(jsonPath("$.prixUnitaire").value(DEFAULT_PRIX_UNITAIRE.doubleValue()));
     }
@@ -179,7 +159,7 @@ class LigneTransactionResourceIT {
 
     @Test
     @Transactional
-    void putExistingLigneTransaction() throws Exception {
+    void putNewLigneTransaction() throws Exception {
         // Initialize the database
         ligneTransactionRepository.saveAndFlush(ligneTransaction);
 
@@ -189,11 +169,7 @@ class LigneTransactionResourceIT {
         LigneTransaction updatedLigneTransaction = ligneTransactionRepository.findById(ligneTransaction.getId()).get();
         // Disconnect from session so that the updates on updatedLigneTransaction are not directly saved in db
         em.detach(updatedLigneTransaction);
-        updatedLigneTransaction
-            .transactionID(UPDATED_TRANSACTION_ID)
-            .caracteristiqueID(UPDATED_CARACTERISTIQUE_ID)
-            .quantite(UPDATED_QUANTITE)
-            .prixUnitaire(UPDATED_PRIX_UNITAIRE);
+        updatedLigneTransaction.quantite(UPDATED_QUANTITE).prixUnitaire(UPDATED_PRIX_UNITAIRE);
 
         restLigneTransactionMockMvc
             .perform(
@@ -207,8 +183,6 @@ class LigneTransactionResourceIT {
         List<LigneTransaction> ligneTransactionList = ligneTransactionRepository.findAll();
         assertThat(ligneTransactionList).hasSize(databaseSizeBeforeUpdate);
         LigneTransaction testLigneTransaction = ligneTransactionList.get(ligneTransactionList.size() - 1);
-        assertThat(testLigneTransaction.getTransactionID()).isEqualTo(UPDATED_TRANSACTION_ID);
-        assertThat(testLigneTransaction.getCaracteristiqueID()).isEqualTo(UPDATED_CARACTERISTIQUE_ID);
         assertThat(testLigneTransaction.getQuantite()).isEqualTo(UPDATED_QUANTITE);
         assertThat(testLigneTransaction.getPrixUnitaire()).isEqualTo(UPDATED_PRIX_UNITAIRE);
     }
@@ -283,8 +257,6 @@ class LigneTransactionResourceIT {
         LigneTransaction partialUpdatedLigneTransaction = new LigneTransaction();
         partialUpdatedLigneTransaction.setId(ligneTransaction.getId());
 
-        partialUpdatedLigneTransaction.quantite(UPDATED_QUANTITE);
-
         restLigneTransactionMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedLigneTransaction.getId())
@@ -297,9 +269,7 @@ class LigneTransactionResourceIT {
         List<LigneTransaction> ligneTransactionList = ligneTransactionRepository.findAll();
         assertThat(ligneTransactionList).hasSize(databaseSizeBeforeUpdate);
         LigneTransaction testLigneTransaction = ligneTransactionList.get(ligneTransactionList.size() - 1);
-        assertThat(testLigneTransaction.getTransactionID()).isEqualTo(DEFAULT_TRANSACTION_ID);
-        assertThat(testLigneTransaction.getCaracteristiqueID()).isEqualTo(DEFAULT_CARACTERISTIQUE_ID);
-        assertThat(testLigneTransaction.getQuantite()).isEqualTo(UPDATED_QUANTITE);
+        assertThat(testLigneTransaction.getQuantite()).isEqualTo(DEFAULT_QUANTITE);
         assertThat(testLigneTransaction.getPrixUnitaire()).isEqualTo(DEFAULT_PRIX_UNITAIRE);
     }
 
@@ -315,11 +285,7 @@ class LigneTransactionResourceIT {
         LigneTransaction partialUpdatedLigneTransaction = new LigneTransaction();
         partialUpdatedLigneTransaction.setId(ligneTransaction.getId());
 
-        partialUpdatedLigneTransaction
-            .transactionID(UPDATED_TRANSACTION_ID)
-            .caracteristiqueID(UPDATED_CARACTERISTIQUE_ID)
-            .quantite(UPDATED_QUANTITE)
-            .prixUnitaire(UPDATED_PRIX_UNITAIRE);
+        partialUpdatedLigneTransaction.quantite(UPDATED_QUANTITE).prixUnitaire(UPDATED_PRIX_UNITAIRE);
 
         restLigneTransactionMockMvc
             .perform(
@@ -333,8 +299,6 @@ class LigneTransactionResourceIT {
         List<LigneTransaction> ligneTransactionList = ligneTransactionRepository.findAll();
         assertThat(ligneTransactionList).hasSize(databaseSizeBeforeUpdate);
         LigneTransaction testLigneTransaction = ligneTransactionList.get(ligneTransactionList.size() - 1);
-        assertThat(testLigneTransaction.getTransactionID()).isEqualTo(UPDATED_TRANSACTION_ID);
-        assertThat(testLigneTransaction.getCaracteristiqueID()).isEqualTo(UPDATED_CARACTERISTIQUE_ID);
         assertThat(testLigneTransaction.getQuantite()).isEqualTo(UPDATED_QUANTITE);
         assertThat(testLigneTransaction.getPrixUnitaire()).isEqualTo(UPDATED_PRIX_UNITAIRE);
     }

@@ -15,37 +15,6 @@
             <input type="text" class="form-control" id="id" name="id" v-model="caracteristique.id" readonly />
           </div>
           <div class="form-group">
-            <label
-              class="form-control-label"
-              v-text="$t('ecomApp.caracteristique.caracteristiqueID')"
-              for="caracteristique-caracteristiqueID"
-              >Caracteristique ID</label
-            >
-            <input
-              type="number"
-              class="form-control"
-              name="caracteristiqueID"
-              id="caracteristique-caracteristiqueID"
-              data-cy="caracteristiqueID"
-              :class="{ valid: !$v.caracteristique.caracteristiqueID.$invalid, invalid: $v.caracteristique.caracteristiqueID.$invalid }"
-              v-model.number="$v.caracteristique.caracteristiqueID.$model"
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" v-text="$t('ecomApp.caracteristique.produitID')" for="caracteristique-produitID"
-              >Produit ID</label
-            >
-            <input
-              type="number"
-              class="form-control"
-              name="produitID"
-              id="caracteristique-produitID"
-              data-cy="produitID"
-              :class="{ valid: !$v.caracteristique.produitID.$invalid, invalid: $v.caracteristique.produitID.$invalid }"
-              v-model.number="$v.caracteristique.produitID.$model"
-            />
-          </div>
-          <div class="form-group">
             <label class="form-control-label" v-text="$t('ecomApp.caracteristique.couleur')" for="caracteristique-couleur">Couleur</label>
             <input
               type="text"
@@ -69,6 +38,20 @@
               data-cy="quantite"
               :class="{ valid: !$v.caracteristique.quantite.$invalid, invalid: $v.caracteristique.quantite.$invalid }"
               v-model.number="$v.caracteristique.quantite.$model"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('ecomApp.caracteristique.lienImage')" for="caracteristique-lienImage"
+              >Lien Image</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="lienImage"
+              id="caracteristique-lienImage"
+              data-cy="lienImage"
+              :class="{ valid: !$v.caracteristique.lienImage.$invalid, invalid: $v.caracteristique.lienImage.$invalid }"
+              v-model="$v.caracteristique.lienImage.$model"
             />
           </div>
           <div class="form-group">

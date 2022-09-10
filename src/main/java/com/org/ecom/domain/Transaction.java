@@ -16,7 +16,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "transaction")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SuppressWarnings("common-java:DuplicatedBlocks")
 public class Transaction implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,12 +25,6 @@ public class Transaction implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     @Column(name = "id")
     private Long id;
-
-    @Column(name = "transaction_id")
-    private Long transactionID;
-
-    @Column(name = "utilisateur_id")
-    private Long utilisateurID;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "etat")
@@ -62,32 +55,6 @@ public class Transaction implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getTransactionID() {
-        return this.transactionID;
-    }
-
-    public Transaction transactionID(Long transactionID) {
-        this.setTransactionID(transactionID);
-        return this;
-    }
-
-    public void setTransactionID(Long transactionID) {
-        this.transactionID = transactionID;
-    }
-
-    public Long getUtilisateurID() {
-        return this.utilisateurID;
-    }
-
-    public Transaction utilisateurID(Long utilisateurID) {
-        this.setUtilisateurID(utilisateurID);
-        return this;
-    }
-
-    public void setUtilisateurID(Long utilisateurID) {
-        this.utilisateurID = utilisateurID;
     }
 
     public EtatProduit getEtat() {
@@ -184,8 +151,6 @@ public class Transaction implements Serializable {
     public String toString() {
         return "Transaction{" +
             "id=" + getId() +
-            ", transactionID=" + getTransactionID() +
-            ", utilisateurID=" + getUtilisateurID() +
             ", etat='" + getEtat() + "'" +
             ", date='" + getDate() + "'" +
             "}";

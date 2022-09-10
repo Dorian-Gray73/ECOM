@@ -2,8 +2,6 @@ package com.org.ecom.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -14,7 +12,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "caracteristique")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SuppressWarnings("common-java:DuplicatedBlocks")
 public class Caracteristique implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,30 +22,22 @@ public class Caracteristique implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "caracteristique_id")
-    private Long caracteristiqueID;
-
-    @Column(name = "produit_id")
-    private Long produitID;
-
     @Column(name = "couleur")
     private String couleur;
 
     @Column(name = "quantite")
     private Integer quantite;
 
+    @Column(name = "lien_image")
+    private String lienImage;
+
     @JsonIgnoreProperties(value = { "caracteristique", "transaction" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
     private LigneTransaction ligneTransaction;
 
-    @OneToMany(mappedBy = "caracteristique")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "caracteristique", "produit" }, allowSetters = true)
-    private Set<Image> images = new HashSet<>();
-
     @ManyToOne
-    @JsonIgnoreProperties(value = { "caracteristiques", "images" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "caracteristiques" }, allowSetters = true)
     private Produit produit;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -64,32 +53,6 @@ public class Caracteristique implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getCaracteristiqueID() {
-        return this.caracteristiqueID;
-    }
-
-    public Caracteristique caracteristiqueID(Long caracteristiqueID) {
-        this.setCaracteristiqueID(caracteristiqueID);
-        return this;
-    }
-
-    public void setCaracteristiqueID(Long caracteristiqueID) {
-        this.caracteristiqueID = caracteristiqueID;
-    }
-
-    public Long getProduitID() {
-        return this.produitID;
-    }
-
-    public Caracteristique produitID(Long produitID) {
-        this.setProduitID(produitID);
-        return this;
-    }
-
-    public void setProduitID(Long produitID) {
-        this.produitID = produitID;
     }
 
     public String getCouleur() {
@@ -118,6 +81,19 @@ public class Caracteristique implements Serializable {
         this.quantite = quantite;
     }
 
+    public String getLienImage() {
+        return this.lienImage;
+    }
+
+    public Caracteristique lienImage(String lienImage) {
+        this.setLienImage(lienImage);
+        return this;
+    }
+
+    public void setLienImage(String lienImage) {
+        this.lienImage = lienImage;
+    }
+
     public LigneTransaction getLigneTransaction() {
         return this.ligneTransaction;
     }
@@ -128,37 +104,6 @@ public class Caracteristique implements Serializable {
 
     public Caracteristique ligneTransaction(LigneTransaction ligneTransaction) {
         this.setLigneTransaction(ligneTransaction);
-        return this;
-    }
-
-    public Set<Image> getImages() {
-        return this.images;
-    }
-
-    public void setImages(Set<Image> images) {
-        if (this.images != null) {
-            this.images.forEach(i -> i.setCaracteristique(null));
-        }
-        if (images != null) {
-            images.forEach(i -> i.setCaracteristique(this));
-        }
-        this.images = images;
-    }
-
-    public Caracteristique images(Set<Image> images) {
-        this.setImages(images);
-        return this;
-    }
-
-    public Caracteristique addImage(Image image) {
-        this.images.add(image);
-        image.setCaracteristique(this);
-        return this;
-    }
-
-    public Caracteristique removeImage(Image image) {
-        this.images.remove(image);
-        image.setCaracteristique(null);
         return this;
     }
 
@@ -199,10 +144,9 @@ public class Caracteristique implements Serializable {
     public String toString() {
         return "Caracteristique{" +
             "id=" + getId() +
-            ", caracteristiqueID=" + getCaracteristiqueID() +
-            ", produitID=" + getProduitID() +
             ", couleur='" + getCouleur() + "'" +
             ", quantite=" + getQuantite() +
+            ", lienImage='" + getLienImage() + "'" +
             "}";
     }
 }

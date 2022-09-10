@@ -15,18 +15,6 @@
             <input type="text" class="form-control" id="id" name="id" v-model="produit.id" readonly />
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('ecomApp.produit.produitID')" for="produit-produitID">Produit ID</label>
-            <input
-              type="number"
-              class="form-control"
-              name="produitID"
-              id="produit-produitID"
-              data-cy="produitID"
-              :class="{ valid: !$v.produit.produitID.$invalid, invalid: $v.produit.produitID.$invalid }"
-              v-model.number="$v.produit.produitID.$model"
-            />
-          </div>
-          <div class="form-group">
             <label class="form-control-label" v-text="$t('ecomApp.produit.nom')" for="produit-nom">Nom</label>
             <input
               type="text"

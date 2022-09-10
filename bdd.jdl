@@ -22,6 +22,7 @@ entity Produit {
 entity Caracteristique {
     couleur String,
     quantite Integer,
+    lienImage String
 }
 
 entity Transaction {
@@ -38,20 +39,12 @@ entity LigneTransaction {
     prixUnitaire Float
 }
 
-entity Image {
-    lienImage String,
-}
-
 relationship OneToMany {
 	Utilisateur to Transaction
 
 	Transaction to LigneTransaction
     
     Produit to Caracteristique,
-
-	Caracteristique{caracteristiqueID} to Image{produitID}
-
-	Produit to Image
 }
 
 relationship OneToOne {

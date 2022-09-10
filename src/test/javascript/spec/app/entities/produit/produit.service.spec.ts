@@ -29,7 +29,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new ProduitService();
-      elemDefault = new Produit(123, 0, 'AAAAAAA', 0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', false);
+      elemDefault = new Produit(123, 'AAAAAAA', 0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', false);
     });
 
     describe('Service methods', () => {
@@ -81,7 +81,6 @@ describe('Service Tests', () => {
       it('should update a Produit', async () => {
         const returnedFromService = Object.assign(
           {
-            produitID: 1,
             nom: 'BBBBBB',
             prix: 1,
             lienImage: 'BBBBBB',
@@ -114,9 +113,8 @@ describe('Service Tests', () => {
       it('should partial update a Produit', async () => {
         const patchObject = Object.assign(
           {
-            produitID: 1,
             nom: 'BBBBBB',
-            marque: 'BBBBBB',
+            prix: 1,
             modele: 'BBBBBB',
             progressif: true,
           },
@@ -146,7 +144,6 @@ describe('Service Tests', () => {
       it('should return a list of Produit', async () => {
         const returnedFromService = Object.assign(
           {
-            produitID: 1,
             nom: 'BBBBBB',
             prix: 1,
             lienImage: 'BBBBBB',

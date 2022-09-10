@@ -14,9 +14,6 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="produit_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="nom" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -56,7 +53,6 @@
                   tableName="produit"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
-            <column name="produit_id" type="numeric"/>
             <column name="nom" type="string"/>
             <column name="prix" type="numeric"/>
             <column name="lien_image" type="string"/>

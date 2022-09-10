@@ -14,12 +14,6 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="transaction_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="caracteristique_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="quantite" type="integer">
                 <constraints nullable="true" />
             </column>
@@ -50,8 +44,6 @@
                   tableName="ligne_transaction"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
-            <column name="transaction_id" type="numeric"/>
-            <column name="caracteristique_id" type="numeric"/>
             <column name="quantite" type="numeric"/>
             <column name="prix_unitaire" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

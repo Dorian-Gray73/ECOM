@@ -29,7 +29,6 @@
         <thead>
           <tr>
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
-            <th scope="row"><span v-text="$t('ecomApp.produit.produitID')">Produit ID</span></th>
             <th scope="row"><span v-text="$t('ecomApp.produit.nom')">Nom</span></th>
             <th scope="row"><span v-text="$t('ecomApp.produit.prix')">Prix</span></th>
             <th scope="row"><span v-text="$t('ecomApp.produit.lienImage')">Lien Image</span></th>
@@ -44,7 +43,6 @@
             <td>
               <router-link :to="{ name: 'ProduitView', params: { produitId: produit.id } }">{{ produit.id }}</router-link>
             </td>
-            <td>{{ produit.produitID }}</td>
             <td>{{ produit.nom }}</td>
             <td>{{ produit.prix }}</td>
             <td>{{ produit.lienImage }}</td>

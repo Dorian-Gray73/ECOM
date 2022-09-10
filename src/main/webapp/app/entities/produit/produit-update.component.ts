@@ -5,15 +5,11 @@ import AlertService from '@/shared/alert/alert.service';
 import CaracteristiqueService from '@/entities/caracteristique/caracteristique.service';
 import { ICaracteristique } from '@/shared/model/caracteristique.model';
 
-import ImageService from '@/entities/image/image.service';
-import { IImage } from '@/shared/model/image.model';
-
 import { IProduit, Produit } from '@/shared/model/produit.model';
 import ProduitService from './produit.service';
 
 const validations: any = {
   produit: {
-    produitID: {},
     nom: {},
     prix: {},
     lienImage: {},
@@ -35,10 +31,6 @@ export default class ProduitUpdate extends Vue {
   @Inject('caracteristiqueService') private caracteristiqueService: () => CaracteristiqueService;
 
   public caracteristiques: ICaracteristique[] = [];
-
-  @Inject('imageService') private imageService: () => ImageService;
-
-  public images: IImage[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -124,11 +116,6 @@ export default class ProduitUpdate extends Vue {
       .retrieve()
       .then(res => {
         this.caracteristiques = res.data;
-      });
-    this.imageService()
-      .retrieve()
-      .then(res => {
-        this.images = res.data;
       });
   }
 }

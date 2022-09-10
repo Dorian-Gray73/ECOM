@@ -29,10 +29,9 @@
         <thead>
           <tr>
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
-            <th scope="row"><span v-text="$t('ecomApp.caracteristique.caracteristiqueID')">Caracteristique ID</span></th>
-            <th scope="row"><span v-text="$t('ecomApp.caracteristique.produitID')">Produit ID</span></th>
             <th scope="row"><span v-text="$t('ecomApp.caracteristique.couleur')">Couleur</span></th>
             <th scope="row"><span v-text="$t('ecomApp.caracteristique.quantite')">Quantite</span></th>
+            <th scope="row"><span v-text="$t('ecomApp.caracteristique.lienImage')">Lien Image</span></th>
             <th scope="row"><span v-text="$t('ecomApp.caracteristique.ligneTransaction')">Ligne Transaction</span></th>
             <th scope="row"><span v-text="$t('ecomApp.caracteristique.produit')">Produit</span></th>
             <th scope="row"></th>
@@ -45,10 +44,9 @@
                 caracteristique.id
               }}</router-link>
             </td>
-            <td>{{ caracteristique.caracteristiqueID }}</td>
-            <td>{{ caracteristique.produitID }}</td>
             <td>{{ caracteristique.couleur }}</td>
             <td>{{ caracteristique.quantite }}</td>
+            <td>{{ caracteristique.lienImage }}</td>
             <td>
               <div v-if="caracteristique.ligneTransaction">
                 <router-link :to="{ name: 'LigneTransactionView', params: { ligneTransactionId: caracteristique.ligneTransaction.id } }">{{

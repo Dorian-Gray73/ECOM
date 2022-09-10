@@ -13,8 +13,6 @@ import LigneTransactionService from './ligne-transaction.service';
 
 const validations: any = {
   ligneTransaction: {
-    transactionID: {},
-    caracteristiqueID: {},
     quantite: {},
     prixUnitaire: {},
   },

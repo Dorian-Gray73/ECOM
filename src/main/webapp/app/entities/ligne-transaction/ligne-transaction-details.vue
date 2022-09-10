@@ -7,18 +7,6 @@
         </h2>
         <dl class="row jh-entity-details">
           <dt>
-            <span v-text="$t('ecomApp.ligneTransaction.transactionID')">Transaction ID</span>
-          </dt>
-          <dd>
-            <span>{{ ligneTransaction.transactionID }}</span>
-          </dd>
-          <dt>
-            <span v-text="$t('ecomApp.ligneTransaction.caracteristiqueID')">Caracteristique ID</span>
-          </dt>
-          <dd>
-            <span>{{ ligneTransaction.caracteristiqueID }}</span>
-          </dd>
-          <dt>
             <span v-text="$t('ecomApp.ligneTransaction.quantite')">Quantite</span>
           </dt>
           <dd>

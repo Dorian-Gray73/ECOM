@@ -14,7 +14,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "produit")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SuppressWarnings("common-java:DuplicatedBlocks")
 public class Produit implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,9 +23,6 @@ public class Produit implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     @Column(name = "id")
     private Long id;
-
-    @Column(name = "produit_id")
-    private Long produitID;
 
     @Column(name = "nom")
     private String nom;
@@ -48,13 +44,8 @@ public class Produit implements Serializable {
 
     @OneToMany(mappedBy = "produit")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "ligneTransaction", "images", "produit" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "ligneTransaction", "produit" }, allowSetters = true)
     private Set<Caracteristique> caracteristiques = new HashSet<>();
-
-    @OneToMany(mappedBy = "produit")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "caracteristique", "produit" }, allowSetters = true)
-    private Set<Image> images = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -69,19 +60,6 @@ public class Produit implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getProduitID() {
-        return this.produitID;
-    }
-
-    public Produit produitID(Long produitID) {
-        this.setProduitID(produitID);
-        return this;
-    }
-
-    public void setProduitID(Long produitID) {
-        this.produitID = produitID;
     }
 
     public String getNom() {
@@ -193,37 +171,6 @@ public class Produit implements Serializable {
         return this;
     }
 
-    public Set<Image> getImages() {
-        return this.images;
-    }
-
-    public void setImages(Set<Image> images) {
-        if (this.images != null) {
-            this.images.forEach(i -> i.setProduit(null));
-        }
-        if (images != null) {
-            images.forEach(i -> i.setProduit(this));
-        }
-        this.images = images;
-    }
-
-    public Produit images(Set<Image> images) {
-        this.setImages(images);
-        return this;
-    }
-
-    public Produit addImage(Image image) {
-        this.images.add(image);
-        image.setProduit(this);
-        return this;
-    }
-
-    public Produit removeImage(Image image) {
-        this.images.remove(image);
-        image.setProduit(null);
-        return this;
-    }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -248,7 +195,6 @@ public class Produit implements Serializable {
     public String toString() {
         return "Produit{" +
             "id=" + getId() +
-            ", produitID=" + getProduitID() +
             ", nom='" + getNom() + "'" +
             ", prix=" + getPrix() +
             ", lienImage='" + getLienImage() + "'" +
