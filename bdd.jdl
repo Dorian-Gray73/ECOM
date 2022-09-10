@@ -49,7 +49,7 @@ relationship OneToMany {
     
     Produit to Caracteristique,
 
-	Caracteristique to Image
+	Caracteristique{caracteristiqueID} to Image{produitID}
 
 	Produit to Image
 }
