@@ -1,6 +1,4 @@
 entity Utilisateur {
-	utilisateurID Long,
-    utilisateurJhipsterID Long,
 	nom String,
     prenom String,
     courriel String,
@@ -13,7 +11,6 @@ enum Type {
 }
 
 entity Produit {
-	produitID Long,
     nom String,
     prix Float,
     lienImage String,
@@ -23,15 +20,11 @@ entity Produit {
 }
 
 entity Caracteristique {
-	caracteristiqueID Long,
-	produitID Long,
     couleur String,
     quantite Integer,
 }
 
 entity Transaction {
-	transactionID Long,
-	utilisateurID Long,
     etat EtatProduit,
     date LocalDate,
 }
@@ -41,14 +34,11 @@ enum EtatProduit {
 }
 
 entity LigneTransaction {
-	transactionID Long,
-    caracteristiqueID Long,
     quantite Integer,
     prixUnitaire Float
 }
 
 entity Image {
-    produitID Long
     lienImage String,
 }
 
