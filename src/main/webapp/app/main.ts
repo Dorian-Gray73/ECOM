@@ -28,6 +28,7 @@ import AlertService from './shared/alert/alert.service';
 import { BCarousel } from 'bootstrap-vue';
 import { BCarouselSlide } from 'bootstrap-vue';
 import { LayoutPlugin } from 'bootstrap-vue';
+import { FormCheckboxPlugin } from 'bootstrap-vue';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -47,6 +48,7 @@ bootstrapVueConfig.initBootstrapVue(Vue);
 Vue.use(Vue2Filters);
 Vue.use(ToastPlugin);
 Vue.use(LayoutPlugin);
+Vue.use(FormCheckboxPlugin);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('jhi-item-count', JhiItemCountComponent);
 Vue.component('jhi-sort-indicator', JhiSortIndicatorComponent);

@@ -1,10 +1,10 @@
 <template>
   <div id="footer">
-    <span id="title">Retourner en haut</span>
+    <a @click="scrollMeTo('navbar')"><span id="title">Retourner en haut</span></a>
     <hr id="separate" />
     <b-container>
       <!-- Ligne 1 -->
-      <b-row>
+      <b-row id="firstRow">
         <b-col>
           <div>Lu Net</div>
         </b-col>
@@ -50,4 +50,13 @@
 
 <script lang="ts" src="./jhi-footer.component.ts"></script>
 
-<style scoped></style>
+<style scoped>
+#footer {
+  height: 344px;
+}
+
+#firstRow {
+  margin-top: 64px;
+  font-weight: bold;
+}
+</style>
