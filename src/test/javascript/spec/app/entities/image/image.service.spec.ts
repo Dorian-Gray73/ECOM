@@ -29,7 +29,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new ImageService();
-      elemDefault = new Image(123, 0, 'AAAAAAA');
+      elemDefault = new Image(123, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -81,7 +81,6 @@ describe('Service Tests', () => {
       it('should update a Image', async () => {
         const returnedFromService = Object.assign(
           {
-            produitID: 1,
             lienImage: 'BBBBBB',
           },
           elemDefault
@@ -109,7 +108,7 @@ describe('Service Tests', () => {
       it('should partial update a Image', async () => {
         const patchObject = Object.assign(
           {
-            produitID: 1,
+            lienImage: 'BBBBBB',
           },
           new Image()
         );
@@ -137,7 +136,6 @@ describe('Service Tests', () => {
       it('should return a list of Image', async () => {
         const returnedFromService = Object.assign(
           {
-            produitID: 1,
             lienImage: 'BBBBBB',
           },
           elemDefault

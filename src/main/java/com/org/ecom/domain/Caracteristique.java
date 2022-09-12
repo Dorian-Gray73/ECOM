@@ -2,6 +2,8 @@ package com.org.ecom.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -31,13 +33,17 @@ public class Caracteristique implements Serializable {
     @Column(name = "lien_image")
     private String lienImage;
 
-    @JsonIgnoreProperties(value = { "caracteristique", "transaction" }, allowSetters = true)
-    @OneToOne
-    @JoinColumn(unique = true)
+    @OneToMany(mappedBy = "caracteristique")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "caracteristique", "produit" }, allowSetters = true)
+    private Set<Image> images = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "transaction", "caracteristiques" }, allowSetters = true)
     private LigneTransaction ligneTransaction;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "caracteristiques" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "caracteristiques", "images" }, allowSetters = true)
     private Produit produit;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -92,6 +98,37 @@ public class Caracteristique implements Serializable {
 
     public void setLienImage(String lienImage) {
         this.lienImage = lienImage;
+    }
+
+    public Set<Image> getImages() {
+        return this.images;
+    }
+
+    public void setImages(Set<Image> images) {
+        if (this.images != null) {
+            this.images.forEach(i -> i.setCaracteristique(null));
+        }
+        if (images != null) {
+            images.forEach(i -> i.setCaracteristique(this));
+        }
+        this.images = images;
+    }
+
+    public Caracteristique images(Set<Image> images) {
+        this.setImages(images);
+        return this;
+    }
+
+    public Caracteristique addImage(Image image) {
+        this.images.add(image);
+        image.setCaracteristique(this);
+        return this;
+    }
+
+    public Caracteristique removeImage(Image image) {
+        this.images.remove(image);
+        image.setCaracteristique(null);
+        return this;
     }
 
     public LigneTransaction getLigneTransaction() {

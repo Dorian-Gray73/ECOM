@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220908135319",
+  "changelogDate": "20220912082254",
   "dto": "no",
   "embedded": false,
   "entityTableName": "caracteristique",
@@ -25,11 +25,16 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "image",
+      "otherEntityRelationshipName": "caracteristique",
+      "relationshipName": "image",
+      "relationshipType": "one-to-many"
+    },
+    {
       "otherEntityName": "ligneTransaction",
       "otherEntityRelationshipName": "caracteristique",
-      "ownerSide": true,
       "relationshipName": "ligneTransaction",
-      "relationshipType": "one-to-one"
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "produit",

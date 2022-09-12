@@ -44,8 +44,13 @@ public class Produit implements Serializable {
 
     @OneToMany(mappedBy = "produit")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "ligneTransaction", "produit" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "images", "ligneTransaction", "produit" }, allowSetters = true)
     private Set<Caracteristique> caracteristiques = new HashSet<>();
+
+    @OneToMany(mappedBy = "produit")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "caracteristique", "produit" }, allowSetters = true)
+    private Set<Image> images = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -168,6 +173,37 @@ public class Produit implements Serializable {
     public Produit removeCaracteristique(Caracteristique caracteristique) {
         this.caracteristiques.remove(caracteristique);
         caracteristique.setProduit(null);
+        return this;
+    }
+
+    public Set<Image> getImages() {
+        return this.images;
+    }
+
+    public void setImages(Set<Image> images) {
+        if (this.images != null) {
+            this.images.forEach(i -> i.setProduit(null));
+        }
+        if (images != null) {
+            images.forEach(i -> i.setProduit(this));
+        }
+        this.images = images;
+    }
+
+    public Produit images(Set<Image> images) {
+        this.setImages(images);
+        return this;
+    }
+
+    public Produit addImage(Image image) {
+        this.images.add(image);
+        image.setProduit(this);
+        return this;
+    }
+
+    public Produit removeImage(Image image) {
+        this.images.remove(image);
+        image.setProduit(null);
         return this;
     }
 

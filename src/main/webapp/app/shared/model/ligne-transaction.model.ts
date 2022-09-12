@@ -1,12 +1,12 @@
-import { ICaracteristique } from '@/shared/model/caracteristique.model';
 import { ITransaction } from '@/shared/model/transaction.model';
+import { ICaracteristique } from '@/shared/model/caracteristique.model';
 
 export interface ILigneTransaction {
   id?: number;
   quantite?: number | null;
   prixUnitaire?: number | null;
-  caracteristique?: ICaracteristique | null;
   transaction?: ITransaction | null;
+  caracteristiques?: ICaracteristique[] | null;
 }
 
 export class LigneTransaction implements ILigneTransaction {
@@ -14,7 +14,7 @@ export class LigneTransaction implements ILigneTransaction {
     public id?: number,
     public quantite?: number | null,
     public prixUnitaire?: number | null,
-    public caracteristique?: ICaracteristique | null,
-    public transaction?: ITransaction | null
+    public transaction?: ITransaction | null,
+    public caracteristiques?: ICaracteristique[] | null
   ) {}
 }

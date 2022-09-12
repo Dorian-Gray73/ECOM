@@ -52,11 +52,14 @@ public class CacheConfiguration {
             createCache(cm, com.org.ecom.domain.Utilisateur.class.getName() + ".transactions");
             createCache(cm, com.org.ecom.domain.Produit.class.getName());
             createCache(cm, com.org.ecom.domain.Produit.class.getName() + ".caracteristiques");
+            createCache(cm, com.org.ecom.domain.Produit.class.getName() + ".images");
             createCache(cm, com.org.ecom.domain.Caracteristique.class.getName());
-            createCache(cm, com.org.ecom.domain.Caracteristique.class.getName() + ".caracteristiqueIDS");
+            createCache(cm, com.org.ecom.domain.Caracteristique.class.getName() + ".images");
             createCache(cm, com.org.ecom.domain.Transaction.class.getName());
             createCache(cm, com.org.ecom.domain.Transaction.class.getName() + ".ligneTransactions");
             createCache(cm, com.org.ecom.domain.LigneTransaction.class.getName());
+            createCache(cm, com.org.ecom.domain.LigneTransaction.class.getName() + ".caracteristiques");
+            createCache(cm, com.org.ecom.domain.Image.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

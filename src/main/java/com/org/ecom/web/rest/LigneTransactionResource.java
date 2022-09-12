@@ -8,8 +8,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -146,18 +144,10 @@ public class LigneTransactionResource {
     /**
      * {@code GET  /ligne-transactions} : get all the ligneTransactions.
      *
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of ligneTransactions in body.
      */
     @GetMapping("/ligne-transactions")
-    public List<LigneTransaction> getAllLigneTransactions(@RequestParam(required = false) String filter) {
-        if ("caracteristique-is-null".equals(filter)) {
-            log.debug("REST request to get all LigneTransactions where caracteristique is null");
-            return StreamSupport
-                .stream(ligneTransactionRepository.findAll().spliterator(), false)
-                .filter(ligneTransaction -> ligneTransaction.getCaracteristique() == null)
-                .collect(Collectors.toList());
-        }
+    public List<LigneTransaction> getAllLigneTransactions() {
         log.debug("REST request to get all LigneTransactions");
         return ligneTransactionRepository.findAll();
     }

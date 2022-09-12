@@ -9,6 +9,8 @@ import CaracteristiqueUpdateComponent from '@/entities/caracteristique/caracteri
 import CaracteristiqueClass from '@/entities/caracteristique/caracteristique-update.component';
 import CaracteristiqueService from '@/entities/caracteristique/caracteristique.service';
 
+import ImageService from '@/entities/image/image.service';
+
 import LigneTransactionService from '@/entities/ligne-transaction/ligne-transaction.service';
 
 import ProduitService from '@/entities/produit/produit.service';
@@ -45,6 +47,11 @@ describe('Component Tests', () => {
         provide: {
           caracteristiqueService: () => caracteristiqueServiceStub,
           alertService: () => new AlertService(),
+
+          imageService: () =>
+            sinon.createStubInstance<ImageService>(ImageService, {
+              retrieve: sinon.stub().resolves({}),
+            } as any),
 
           ligneTransactionService: () =>
             sinon.createStubInstance<LigneTransactionService>(LigneTransactionService, {

@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220908135321",
+  "changelogDate": "20220912082256",
   "dto": "no",
   "embedded": false,
   "entityTableName": "ligne_transaction",
@@ -21,17 +21,16 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "caracteristique",
-      "otherEntityRelationshipName": "ligneTransaction",
-      "ownerSide": false,
-      "relationshipName": "caracteristique",
-      "relationshipType": "one-to-one"
-    },
-    {
       "otherEntityName": "transaction",
       "otherEntityRelationshipName": "ligneTransaction",
       "relationshipName": "transaction",
       "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "caracteristique",
+      "otherEntityRelationshipName": "ligneTransaction",
+      "relationshipName": "caracteristique",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "no"

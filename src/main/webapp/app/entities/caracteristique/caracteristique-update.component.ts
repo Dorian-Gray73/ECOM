@@ -2,6 +2,9 @@ import { Component, Vue, Inject } from 'vue-property-decorator';
 
 import AlertService from '@/shared/alert/alert.service';
 
+import ImageService from '@/entities/image/image.service';
+import { IImage } from '@/shared/model/image.model';
+
 import LigneTransactionService from '@/entities/ligne-transaction/ligne-transaction.service';
 import { ILigneTransaction } from '@/shared/model/ligne-transaction.model';
 
@@ -27,6 +30,10 @@ export default class CaracteristiqueUpdate extends Vue {
   @Inject('alertService') private alertService: () => AlertService;
 
   public caracteristique: ICaracteristique = new Caracteristique();
+
+  @Inject('imageService') private imageService: () => ImageService;
+
+  public images: IImage[] = [];
 
   @Inject('ligneTransactionService') private ligneTransactionService: () => LigneTransactionService;
 
@@ -116,6 +123,11 @@ export default class CaracteristiqueUpdate extends Vue {
   }
 
   public initRelationships(): void {
+    this.imageService()
+      .retrieve()
+      .then(res => {
+        this.images = res.data;
+      });
     this.ligneTransactionService()
       .retrieve()
       .then(res => {

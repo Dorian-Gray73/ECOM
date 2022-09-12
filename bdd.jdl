@@ -39,14 +39,22 @@ entity LigneTransaction {
     prixUnitaire Float
 }
 
-relationship OneToMany {
-	Utilisateur to Transaction
-
-	Transaction to LigneTransaction
-    
-    Produit to Caracteristique,
+entity Image {
+	lienImage String
 }
 
-relationship OneToOne {
-	Caracteristique to LigneTransaction
+relationship OneToMany {
+	Utilisateur{transaction} to Transaction{utilisateur},
+
+	Transaction{ligneTransaction} to LigneTransaction{transaction},
+    
+    Produit{caracteristique} to Caracteristique{produit} ,
+    
+    Caracteristique{image} to Image{caracteristique},
+    
+    Produit{image} to Image{produit},
+}
+
+relationship ManyToOne {
+	Caracteristique to LigneTransaction{caracteristique}
 }

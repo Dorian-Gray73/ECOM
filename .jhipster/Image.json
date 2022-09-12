@@ -1,14 +1,10 @@
 {
   "applications": "*",
-  "changelogDate": "20220908135322",
+  "changelogDate": "20220912082257",
   "dto": "no",
   "embedded": false,
   "entityTableName": "image",
   "fields": [
-    {
-      "fieldName": "produitID",
-      "fieldType": "Long"
-    },
     {
       "fieldName": "lienImage",
       "fieldType": "String"

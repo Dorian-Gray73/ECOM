@@ -24,7 +24,8 @@
       "marque": "Marque",
       "modele": "Modele",
       "progressif": "Progressif",
-      "caracteristique": "Caracteristique"
+      "caracteristique": "Caracteristique",
+      "image": "Image"
     }
   }
 }

@@ -5,46 +5,41 @@ import AlertService from '@/shared/alert/alert.service';
 import CaracteristiqueService from '@/entities/caracteristique/caracteristique.service';
 import { ICaracteristique } from '@/shared/model/caracteristique.model';
 
-import ImageService from '@/entities/image/image.service';
-import { IImage } from '@/shared/model/image.model';
+import ProduitService from '@/entities/produit/produit.service';
+import { IProduit } from '@/shared/model/produit.model';
 
-import { IProduit, Produit } from '@/shared/model/produit.model';
-import ProduitService from './produit.service';
+import { IImage, Image } from '@/shared/model/image.model';
+import ImageService from './image.service';
 
 const validations: any = {
-  produit: {
-    nom: {},
-    prix: {},
+  image: {
     lienImage: {},
-    marque: {},
-    modele: {},
-    progressif: {},
   },
 };
 
 @Component({
   validations,
 })
-export default class ProduitUpdate extends Vue {
-  @Inject('produitService') private produitService: () => ProduitService;
+export default class ImageUpdate extends Vue {
+  @Inject('imageService') private imageService: () => ImageService;
   @Inject('alertService') private alertService: () => AlertService;
 
-  public produit: IProduit = new Produit();
+  public image: IImage = new Image();
 
   @Inject('caracteristiqueService') private caracteristiqueService: () => CaracteristiqueService;
 
   public caracteristiques: ICaracteristique[] = [];
 
-  @Inject('imageService') private imageService: () => ImageService;
+  @Inject('produitService') private produitService: () => ProduitService;
 
-  public images: IImage[] = [];
+  public produits: IProduit[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
   beforeRouteEnter(to, from, next) {
     next(vm => {
-      if (to.params.produitId) {
-        vm.retrieveProduit(to.params.produitId);
+      if (to.params.imageId) {
+        vm.retrieveImage(to.params.imageId);
       }
       vm.initRelationships();
     });
@@ -62,13 +57,13 @@ export default class ProduitUpdate extends Vue {
 
   public save(): void {
     this.isSaving = true;
-    if (this.produit.id) {
-      this.produitService()
-        .update(this.produit)
+    if (this.image.id) {
+      this.imageService()
+        .update(this.image)
         .then(param => {
           this.isSaving = false;
           this.$router.go(-1);
-          const message = this.$t('ecomApp.produit.updated', { param: param.id });
+          const message = this.$t('ecomApp.image.updated', { param: param.id });
           return (this.$root as any).$bvToast.toast(message.toString(), {
             toaster: 'b-toaster-top-center',
             title: 'Info',
@@ -82,12 +77,12 @@ export default class ProduitUpdate extends Vue {
           this.alertService().showHttpError(this, error.response);
         });
     } else {
-      this.produitService()
-        .create(this.produit)
+      this.imageService()
+        .create(this.image)
         .then(param => {
           this.isSaving = false;
           this.$router.go(-1);
-          const message = this.$t('ecomApp.produit.created', { param: param.id });
+          const message = this.$t('ecomApp.image.created', { param: param.id });
           (this.$root as any).$bvToast.toast(message.toString(), {
             toaster: 'b-toaster-top-center',
             title: 'Success',
@@ -103,11 +98,11 @@ export default class ProduitUpdate extends Vue {
     }
   }
 
-  public retrieveProduit(produitId): void {
-    this.produitService()
-      .find(produitId)
+  public retrieveImage(imageId): void {
+    this.imageService()
+      .find(imageId)
       .then(res => {
-        this.produit = res;
+        this.image = res;
       })
       .catch(error => {
         this.alertService().showHttpError(this, error.response);
@@ -124,10 +119,10 @@ export default class ProduitUpdate extends Vue {
       .then(res => {
         this.caracteristiques = res.data;
       });
-    this.imageService()
+    this.produitService()
       .retrieve()
       .then(res => {
-        this.images = res.data;
+        this.produits = res.data;
       });
   }
 }

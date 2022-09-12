@@ -21,6 +21,7 @@
       "couleur": "Couleur",
       "quantite": "Quantite",
       "lienImage": "Lien Image",
+      "image": "Image",
       "ligneTransaction": "Ligne Transaction",
       "produit": "Produit"
     }
