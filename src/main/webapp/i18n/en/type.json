@@ -1,0 +1,9 @@
+{
+  "ecomApp": {
+    "Type": {
+      "null": "",
+      "Admin": "Admin",
+      "Acheteur": "Acheteur"
+    }
+  }
+}

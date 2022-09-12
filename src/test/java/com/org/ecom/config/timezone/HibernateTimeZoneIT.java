@@ -52,6 +52,7 @@ class HibernateTimeZoneIT {
         timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.of(zoneId));
 
         dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        System.out.println("Test");
     }
 
     @Test
