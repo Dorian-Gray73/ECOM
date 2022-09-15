@@ -22,11 +22,34 @@ jobs:
           java-version: 11
       - name: Install node.js packages
         run: npm install
+      
       - name: Run backend test
         run: |
           chmod +x mvnw
           npm run ci:backend:test
+      
       - name: Run frontend test
         run: npm run ci:frontend:test
+      
       - name: Package application
         run: npm run java:jar:prod
+      
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Dorian-Gray73_ECOM
